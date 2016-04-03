@@ -21,6 +21,7 @@ public class RestaurantToYelpIdParser {
         Map<String, String> map = buildMap();
     }
 
+    // returns map for business and Yelp IDs
     public static Map<String, String> buildMap() throws IOException {
 
         Map<String, String> map = new HashMap<String, String>();

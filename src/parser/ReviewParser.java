@@ -28,6 +28,7 @@ public class ReviewParser {
             reviews.readHeaders();
             RestaurantToYelpIdParser yelpToRestaurentParser = new RestaurantToYelpIdParser();
 
+            // Caching results for restaurantID - YelpID mappings
             Map map = RestaurantToYelpIdParser.buildMap();
 
             int index = 1;
@@ -40,6 +41,7 @@ public class ReviewParser {
                 String businessID = reviews.get("business_id");
 //                String restaurantId = yelpToRestaurentParser.getRestaurentIDFromYelpID(businessID);
 
+                /* referencing cache for rest-yelp-ids */
                 if (!map.containsKey(businessID)) {
                     continue;
                 }

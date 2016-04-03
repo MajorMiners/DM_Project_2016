@@ -30,6 +30,7 @@ public class PearsonCorelation {
         double[] reviewLength = new double[violationList.size()];
 //        double[] reviewStars = new double[violationList.size()];
 
+        // cached map to reference reviews with restaurantID
         Map<String, List<ReviewData>> restaurantIDReviewMap = buildMap(violationList, reviewList);
 
         int counter = 0;
@@ -38,7 +39,7 @@ public class PearsonCorelation {
             String restaurentId = violation.getRestaurantID();
 
 //            List<ReviewData> reviewDataList = getReviewForRestaurentID(restaurentId, reviewList);
-            List<ReviewData> reviewDataList = restaurantIDReviewMap.get(restaurentId);
+            List<ReviewData> reviewDataList = restaurantIDReviewMap.get(restaurentId);      // using map
 
             // fast
             ViolationEntry entry = violation.getViolationEntry();
