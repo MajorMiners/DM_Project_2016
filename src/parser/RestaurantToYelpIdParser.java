@@ -16,7 +16,7 @@ public class RestaurantToYelpIdParser {
     private static String filePath = "data/restaurant_ids_to_yelp_ids.csv";
 
     public static void main(String[] args) throws IOException {
-        
+        System.out.println(getRestaurentIDFromYelpID("atafOjxJyt4ohXWJLt6UaQ"));
     }
     
     public static List<RestaurantToYelpIdData> readReadRestaurentToYelpData()
@@ -32,20 +32,19 @@ public class RestaurantToYelpIdParser {
 
             if (linecount > 1) {
                 RestaurantToYelpIdData lineData = getRestaurantToYelpIdData(line);
-                System.out.println(lineData);
+                list.add(lineData);
             }
         }
-
         br.close();
         return list;
     }
     
-    public static String getRestaurentIDFromYelpID(String yelpID)
+    public static String getRestaurentIDFromYelpID(String yelpID) throws IOException
     {
     	Map<String, String> map = new HashMap<String, String>();
     	
     	List<RestaurantToYelpIdData> list = new ArrayList<RestaurantToYelpIdData>();
-    	
+    	list = readReadRestaurentToYelpData();
     	for(RestaurantToYelpIdData line : list){
     		map.put(line.getYelpID(), line.getRestaurantID());
     	}
