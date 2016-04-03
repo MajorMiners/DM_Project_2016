@@ -3,44 +3,67 @@ package parser;/* Authored by Kushagra on 3/28/2016. */
 import model.AllViolationData;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AllViolationParser {
 
-    public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-        String filePath = "data/AllViolations.csv";
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
+		List<AllViolationData> violationList = new ArrayList<AllViolationData>();
+		violationList = readViolationData();
 
-        String line;
-        int linecount = 0;
-        while ((line = br.readLine()) != null) {
+		for (AllViolationData lineData : violationList) {
+			System.out.println(lineData);
+		}
+	}
 
-            linecount++;
+	/**
+	 * Author: Kushagra, Joy on 04/02/2016
+	 * */
+	public static List<AllViolationData> readViolationData()
+			throws IOException {
 
-            if (linecount > 1) {
-                AllViolationData lineData = getAllViolationData(line);
-                System.out.println(lineData);
-            }
-        }
+		List<AllViolationData> violationList = new ArrayList<AllViolationData>();
+		String filePath = "data/AllViolations.csv";
+		BufferedReader br = new BufferedReader(new FileReader(filePath));
 
-        br.close();
-    }
+		String line;
+		int linecount = 0;
+		while ((line = br.readLine()) != null) {
 
-    private static AllViolationData getAllViolationData(String line) {
+			linecount++;
 
-        String[] tokens = line.split(",");
-        int tokenCount = tokens.length;
+			if (linecount > 1) {
+				AllViolationData lineData = getAllViolationData(line);
+				violationList.add(lineData);
+			}
+		}
 
-        AllViolationData data = new AllViolationData();
+		br.close();
 
-        data.setDate(tokens[1]);
-        data.setRestaurantID(tokens[2]);
-        data.getViolationEntry().setMinorViolationCount(Integer.parseInt(tokens[3]));
-        data.getViolationEntry().setMajorViolationCount(Integer.parseInt(tokens[4]));
-        data.getViolationEntry().setMajorViolationCount(Integer.parseInt(tokens[5]));
+		return violationList;
+	}
 
-        return data;
-    }
+	private static AllViolationData getAllViolationData(String line) {
+
+		String[] tokens = line.split(",");
+		int tokenCount = tokens.length;
+
+		AllViolationData data = new AllViolationData();
+
+		data.setDate(tokens[1]);
+		data.setRestaurantID(tokens[2]);
+		data.getViolationEntry().setMinorViolationCount(
+				Integer.parseInt(tokens[3]));
+		data.getViolationEntry().setMajorViolationCount(
+				Integer.parseInt(tokens[4]));
+		data.getViolationEntry().setMajorViolationCount(
+				Integer.parseInt(tokens[5]));
+
+		return data;
+	}
 }

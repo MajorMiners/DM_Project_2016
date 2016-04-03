@@ -1,4 +1,5 @@
-package parser;/* Authored by Kushagra on 3/28/2016. */
+package parser;
+/* Authored by Kushagra on 3/28/2016. */
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

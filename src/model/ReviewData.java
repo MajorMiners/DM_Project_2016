@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Author: Joy and Isha
+ * */
+
 public class ReviewData {
 	private String userId;
 	private String reviewId;

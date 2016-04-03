@@ -40,6 +40,13 @@ public class ViolationEntry {
     public void setSevereViolationCount(int severeViolationCount) {
         this.severeViolationCount = severeViolationCount;
     }
+    
+    public double calculatePenaltyScore()
+    {
+    	double penaltyScore = 0d;
+    	penaltyScore = minorViolationCount + (100 * majorViolationCount) + (1000 * severeViolationCount);
+		return penaltyScore;
+    }
 
     @Override
     public String toString() {
