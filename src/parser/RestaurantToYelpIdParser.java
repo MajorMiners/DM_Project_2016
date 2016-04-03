@@ -1,6 +1,5 @@
 package parser;/* Authored by Kushagra on 3/28/2016. */
 
-import model.AllViolationData;
 import model.RestaurantToYelpIdData;
 
 import java.io.BufferedReader;
@@ -15,10 +14,25 @@ public class RestaurantToYelpIdParser {
 
     private static String filePath = "data/restaurant_ids_to_yelp_ids.csv";
 
+
     public static void main(String[] args) throws IOException {
         System.out.println(getRestaurentIDFromYelpID("atafOjxJyt4ohXWJLt6UaQ"));
+
+        Map<String, String> map = buildMap();
     }
-    
+
+    public static Map<String, String> buildMap() throws IOException {
+
+        Map<String, String> map = new HashMap<String, String>();
+
+        List<RestaurantToYelpIdData> list = readReadRestaurentToYelpData();
+        for(RestaurantToYelpIdData line : list){
+            map.put(line.getYelpID(), line.getRestaurantID());
+        }
+
+        return map;
+    }
+
     public static List<RestaurantToYelpIdData> readReadRestaurentToYelpData()
 			throws IOException {
     	
