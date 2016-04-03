@@ -56,7 +56,7 @@ public class ReviewParser {
                         stars, businessID, restaurantId, date);
 
                 list.add(data);
-                System.out.println(index++);
+//                System.out.println(index++);
             }
             reviews.close();
         } catch (FileNotFoundException e) {

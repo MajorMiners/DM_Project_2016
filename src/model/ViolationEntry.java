@@ -46,7 +46,9 @@ public class ViolationEntry {
     	double penaltyScore = 0d;
     	penaltyScore = entry.minorViolationCount + (100 * entry.majorViolationCount) + 
     			(1000 * entry.severeViolationCount);
-		return penaltyScore;
+
+//        penaltyScore = entry.minorViolationCount + entry.majorViolationCount + entry.severeViolationCount;
+        return penaltyScore;
     }
 
     @Override
