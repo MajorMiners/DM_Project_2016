@@ -67,6 +67,7 @@ public class hygiene_relation {
 		hs.add("greasy");
 		hs.add("hot");
 		hs.add("quality");
+		hs.add("ingredient");
 		hs.add("low");
 		hs.add("stale");
 		hs.add("bathroom");
@@ -112,11 +113,13 @@ public class hygiene_relation {
 			// else assume that the file already has the correct header line
 			ReviewParser reviewparser = new ReviewParser();
 			List<ReviewData> reviews = reviewparser.readReviews();
-			Iterator itr = hs.iterator();
 			
 			for(ReviewData review : reviews){
 				String text = review.getText();
+				Iterator itr = hs.iterator();
+				
 				while(itr.hasNext()){
+					
 					Object entry = itr.next();
 					if(text.contains(entry.toString())){
 						writer.write(review.getUserId());
@@ -142,7 +145,6 @@ public class hygiene_relation {
 						writer1.write(review.getDate());
 						writer1.write(Integer.toString(review.getUsefulVotes()));
 						writer1.endRecord();
-						break;
 					}
 						
 				}
