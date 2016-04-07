@@ -28,7 +28,7 @@ Status:
 		Joy
 				
 Download Link for Data Directory:
-	Isha- Please provide a google drive link to download data folder.
+	@Isha- Please provide a google drive link to download data folder.
 		- We all will use a common data folder.
 		- In ur drive. 
 		- Create a data folder. 
@@ -37,7 +37,7 @@ Download Link for Data Directory:
 		- If anyone has any changes like renaming or folder structure. they can update it in the drive.
 
 How to Run Project:
-	Joy Can you please update how to build and run project via terminal.
+	@Joy- Can you please update how to build and run project via terminal.
 
 
 
