@@ -1,12 +1,16 @@
 Status:
 	
 	4/9/2016
-		
-		
+		Neel-
+		Isha-
+		Kush-
+		Joy-
 		
 	4/8/2016
-		
-		
+		Neel-
+		Isha-
+		Kush-
+		Joy-
 			
 	4/7/2016	
 		Neel-
@@ -21,11 +25,11 @@ Status:
 				- stemming words in reviews and dictionary before parsing.(primary)
 				- do sentimental analysis.(secondary)
 
-		Isha
+		Isha-
 
-		Kush
+		Kush-
 
-		Joy
+		Joy-
 				
 Download Link for Data Directory:
 	@Isha- Please provide a google drive link to download data folder.
