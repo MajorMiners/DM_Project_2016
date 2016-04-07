@@ -1,5 +1,7 @@
-data/*
+data/
+bin
 out
+.metadata
 .idea
 .settings
 .project
