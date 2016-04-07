@@ -1,4 +1,13 @@
 STATUS:
+	
+	4/9/2016
+		
+		
+		
+	4/8/2016
+		
+		
+			
 	4/7/2016	
 		Neel-
 			Updated project structure, .gitignore
@@ -19,11 +28,16 @@ STATUS:
 		Joy-
 				
 Download Link for Data Directory:
-	@Isha Provide a google drive link to download data folder.
+	@Isha Please provide a google drive link to download data folder.
 		*** We all will use a common data folder.
 		- In ur drive. 
 		- Create a data folder. 
 		- Give read write permission to we 4.
 		- Add all "useful" CSVs etc from our datasets into that.
 		- If anyone has any changes like renaming or folder structure. they can update it in the drive.
+
+How to Run Project:
+	@Joy Can you please update how to build and run project via terminal.
+
+
 
