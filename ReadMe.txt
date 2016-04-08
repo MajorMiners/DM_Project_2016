@@ -1,3 +1,8 @@
+Important Notice:
+	- Change java version to 1.8 in pom.xml
+	- handle exceptions inside functions. dont let any function to "throws xyzException".
+	- 
+
 Status:
 	
 	4/9/2016
@@ -12,12 +17,12 @@ Status:
 				- renamed hygiene_relation.java to HygieneIdentifier.java
 				- added code for stemming and sentiment analysis
 				- new output csv from that file will have sentiment as a new column.
-				- maven build successful
+				- maven build successful.
+				- code running successfully but taking too long
 
 			@TODO:
-				- need to test the code on some data.
-				- no idea how to run the program.
-
+				- get the hygiene_related_reviews.csv ready.
+				
 		Isha-
 		Kush-
 		Joy-

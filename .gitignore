@@ -6,4 +6,5 @@ out
 .idea
 .settings
 .project
+.classpath
 *~

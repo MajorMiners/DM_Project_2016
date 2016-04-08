@@ -1,10 +1,7 @@
 package preprocessing;
 
-import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashSet;
 import java.util.List;
@@ -21,24 +18,27 @@ public class HygieneIdentifier {
 	
 	public static void readHygieneDictionary() {
 		try{
-			FileReader fr = new FileReader("hygiene-dictionary.txt");
+			FileReader fr = new FileReader("data/hygiene-dictionary.txt");
 			BufferedReader br = new BufferedReader(fr);
 			englishStemmer stemmer = new englishStemmer();
-			String line = null;
-			while((line = br.readLine()) != null){
+			String line = br.readLine();
+			while(line != null){
 				stemmer.setCurrent(line);
 				if(stemmer.stem()){
-					hygieneDictionary.add(stemmer.getCurrent());
+					String stemLine = stemmer.getCurrent();
+					hygieneDictionary.add(stemLine);
 				}else{
 					System.out.println("NOT stemmer stem :- "+line);
 					hygieneDictionary.add(line);
 				}
-				
+				line = br.readLine();
 			}
 			br.close();
 			fr.close();
 		} catch (Exception e){
+			System.out.println(e.getMessage());
 			System.out.println("unable to read hygiene-dictionary");
+			System.exit(1);
 		}
 	}
 
@@ -71,22 +71,23 @@ public class HygieneIdentifier {
 	}
 
 	public static void classifyReviews(CsvWriter writer) {
-		ReviewParser reviewparser = new ReviewParser();
-		List<ReviewData> reviews = reviewparser.readReviews();
-		englishStemmer stemmer = new englishStemmer();
 		
+		List<ReviewData> reviews = ReviewParser.readReviews();
+		englishStemmer stemmer = new englishStemmer();
+		for(String eachSet : hygieneDictionary){
+			System.out.println("+ "+eachSet);
+		}
 		for(ReviewData review : reviews){
-			String[] sentences = review.getText().split(". ");
+			String[] sentences = review.getText().split("\\. ");
 			String newReview = "";
 			boolean isReviewRelated = false;
-
 			for(String sentence : sentences){
 				String[] words = sentence.split(" ");
-				String stemSentence = "";
 				for(String eachWord : words){
 					stemmer.setCurrent(eachWord);
 					if(stemmer.stem()){
-						if(hygieneDictionary.contains(stemmer.getCurrent())){
+						String stemWord = stemmer.getCurrent();
+						if(hygieneDictionary.contains(stemWord)){
 							isReviewRelated = true;
 							newReview+=sentence+". "; // build a new review with sentences related to hygiene only
 							break;
