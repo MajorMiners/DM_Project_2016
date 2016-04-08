@@ -8,14 +8,24 @@ Status:
 		
 	4/8/2016
 		Neel-
+			Changes in preprocessing
+				- renamed hygiene_relation.java to HygieneIdentifier.java
+				- added code for stemming and sentiment analysis
+				- new output csv from that file will have sentiment as a new column.
+				- maven build successful
+
+			@TODO:
+				- need to test the code on some data.
+				- no idea how to run the program.
+
 		Isha-
 		Kush-
 		Joy-
 			
 	4/7/2016	
 		Neel-
-			Updated project structure, .gitignore
-			Changes in proprocessing/hygiene_relation.java
+			Updated project structure, .gitignore and read me
+			Changes in preprocessing/hygiene_relation.java
 				- modularized the code
 				- removed writer1. no need of 2 csv files. only 1 csv file that has hygiene related reviews.
 				- checking each sentence of review and adding it to hygiene
