@@ -1,0 +1,12 @@
+parser/AllViolationParser.class
+parser/ReviewParser.class
+parser/JSONParserDemo.class
+preprocessing/HygieneIdentifier.class
+model/Features.class
+model/ReviewData.class
+model/RestaurantToYelpIdData.class
+parser/RestaurantToYelpIdParser.class
+model/AllViolationData.class
+Corelation/PearsonCorelation.class
+model/ViolationEntry.class
+preprocessing/NLP.class
