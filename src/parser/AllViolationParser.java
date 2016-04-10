@@ -12,7 +12,7 @@ public class AllViolationParser {
 
 	public static void main(String[] args) throws IOException {
 
-        readViolationData().forEach(System.out::println);
+//        readViolationData().forEach(System.out::println);
 	}
 
 	/**

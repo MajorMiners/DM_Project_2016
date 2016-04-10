@@ -20,8 +20,7 @@ public class ReviewParser {
 
     }
 
-    public static List<ReviewData> readReviews()
-            throws IOException {
+    public static List<ReviewData> readReviews() {
         List<ReviewData> list = new ArrayList<ReviewData>();
         try {
             CsvReader reviews = new CsvReader(filePath);
