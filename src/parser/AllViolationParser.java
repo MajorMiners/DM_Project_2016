@@ -3,7 +3,6 @@ package parser;/* Authored by Kushagra on 3/28/2016. */
 import model.AllViolationData;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,12 +12,7 @@ public class AllViolationParser {
 
 	public static void main(String[] args) throws IOException {
 
-		List<AllViolationData> violationList = new ArrayList<AllViolationData>();
-		violationList = readViolationData();
-
-		for (AllViolationData lineData : violationList) {
-			System.out.println(lineData);
-		}
+        readViolationData().forEach(System.out::println);
 	}
 
 	/**
@@ -55,6 +49,7 @@ public class AllViolationParser {
 
 		AllViolationData data = new AllViolationData();
 
+		data.setSerialID(Integer.parseInt(tokens[0]));
 		data.setDate(tokens[1]);
 		data.setRestaurantID(tokens[2]);
 		data.getViolationEntry().setMinorViolationCount(
