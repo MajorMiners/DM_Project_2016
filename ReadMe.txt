@@ -1,5 +1,4 @@
 Important Notice:
-	- Change java version to 1.8 in pom.xml
 	- handle exceptions inside functions. dont let any function to "throws xyzException".
 	- 
 

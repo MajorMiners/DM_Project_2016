@@ -1,4 +1,4 @@
-package Corelation;
+package corelation;
 
 import model.AllViolationData;
 import model.ReviewData;
