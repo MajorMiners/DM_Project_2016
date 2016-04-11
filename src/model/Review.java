@@ -10,6 +10,7 @@ public class Review {
     private Date date;
     private String text;
     private int reviewResponseCount;
+    // TODO: user profile
 
     public Review() {
         // Empty Constructor
