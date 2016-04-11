@@ -34,7 +34,7 @@ public class ReviewParser {
         // TODO: after complete testing for fasterIO
     }
 
-    private static Map<Integer, ReviewSet> buildReviewSetMap(Map<Integer, Instance> instanceMap) throws IOException,
+    public static Map<Integer, ReviewSet> buildReviewSetMap(Map<Integer, Instance> instanceMap) throws IOException,
             ParseException {
 
         Map<Integer, ReviewSet> map = new HashMap<>();

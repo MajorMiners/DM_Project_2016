@@ -19,7 +19,7 @@ public class PastPenalty {
         System.out.println(map_serialID_pastViolation.toString());
     }
 
-    private static Map<Integer, Double> buildPastViolationsMap(List<AllViolationData> entries) {
+    public static Map<Integer, Double> buildPastViolationsMap(List<AllViolationData> entries) {
         Map<Integer, Double> map = new HashMap<>();
 
         for (AllViolationData entry : entries) {
