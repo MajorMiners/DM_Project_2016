@@ -53,7 +53,7 @@ public class TargetVariable {
         return map;
     }
 
-    private static double calculateScore(ViolationEntry violationEntry, int v1, int v2, int v3) {
+    public static double calculateScore(ViolationEntry violationEntry, int v1, int v2, int v3) {
 
         return v1 * violationEntry.getMinorViolationCount() + v2 * violationEntry.getMajorViolationCount() + v3 *
                 violationEntry.getSevereViolationCount();

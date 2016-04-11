@@ -1,7 +1,6 @@
 package feature_parsers;/* Authored by Kushagra on 4/11/2016. */
 
 import model.AllViolationData;
-import model.ViolationEntry;
 import parser.AllViolationParser;
 import utils.Date;
 
@@ -41,7 +40,8 @@ public class PastPenalty {
                     if (restID.equals(currentRestID)) {
 
                         if (Date.isEarlier(date, currentDate)) {
-                            totalPenaltyScore += calculateScore(lookupEntry.getViolationEntry());
+                            totalPenaltyScore += TargetVariable.calculateScore(lookupEntry.getViolationEntry(), 1, 1,
+                                    1);
                             penaltyCount++;
                         }
                     }
@@ -56,14 +56,5 @@ public class PastPenalty {
         }
 
         return map;
-    }
-
-    private static int calculateScore(ViolationEntry violationEntry) {
-
-        int v1 = violationEntry.getMinorViolationCount();
-        int v2 = violationEntry.getMinorViolationCount();
-        int v3 = violationEntry.getSevereViolationCount();
-
-        return (v1 + v2 + v3);
     }
 }
