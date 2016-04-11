@@ -16,19 +16,19 @@ public class RestaurantToYelpIdParser {
 
 
     public static void main(String[] args) throws IOException {
-        System.out.println(getRestaurentIDFromYelpID("atafOjxJyt4ohXWJLt6UaQ"));
+//        System.out.println(getRestaurentIDFromYelpID("atafOjxJyt4ohXWJLt6UaQ"));
 
-        Map<String, String> map = buildMap();
+        Map<String, String> map = BusinessToYelpIDMapper();
     }
 
     // returns map for business and Yelp IDs
-    public static Map<String, String> buildMap() throws IOException {
+    public static Map<String, String> BusinessToYelpIDMapper() throws IOException {
 
         Map<String, String> map = new HashMap<String, String>();
 
         List<RestaurantToYelpIdData> list = readReadRestaurentToYelpData();
         for(RestaurantToYelpIdData line : list){
-            map.put(line.getYelpID(), line.getRestaurantID());
+            map.put(line.getRestaurantID(), line.getYelpID());
         }
 
         return map;

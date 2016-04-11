@@ -28,7 +28,7 @@ public class ReviewParser {
             RestaurantToYelpIdParser yelpToRestaurentParser = new RestaurantToYelpIdParser();
 
             // Caching results for restaurantID - YelpID mappings
-            Map map = RestaurantToYelpIdParser.buildMap();
+            Map map = RestaurantToYelpIdParser.BusinessToYelpIDMapper();
 
             int index = 1;
             while (reviews.readRecord()) {

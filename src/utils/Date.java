@@ -131,6 +131,16 @@ public class Date {
         return (isEarlier(endDate, currentDate) && isLater(startDate, currentDate));
     }
 
+    public static boolean liesInBetween(Date startDate, Date endDate, Date currentDate) {
+
+        int currentValue = getValue(currentDate);
+        int startValue = getValue(startDate);
+        int endValue = getValue(endDate);
+
+        return (currentValue >= startValue && currentValue <= endValue);
+    }
+
+
     public static Date getBaseDate() {
         return new Date("1900-1-1");
     }

@@ -2,6 +2,7 @@ package feature.parsers;/* Authored by Kushagra on 4/10/2016. */
 
 import model.AllViolationData;
 import parser.AllViolationParser;
+import parser.RestaurantToYelpIdParser;
 import utils.Date;
 
 import java.io.IOException;
@@ -81,10 +82,28 @@ public class Instance {
             map.put(serialID, instance);
         }
 
+        populateYelpIds(map);
+
         return map;
     }
 
-    /** Main method for testing purposes, can be removed **/
+    private static void populateYelpIds(Map<Integer, Instance> map) throws IOException {
+
+        Map<String, String> yelpLookup = RestaurantToYelpIdParser.BusinessToYelpIDMapper();
+
+        for (int serialID : map.keySet()) {
+
+            Instance instance = map.get(serialID);
+            String businessID = instance.businessID;
+
+            // update yelpID
+            instance.yelpID = yelpLookup.get(businessID);
+        }
+    }
+
+    /**
+     * Main method for testing purposes, can be removed
+     **/
     public static void main(String[] args) throws IOException {
 
         System.out.println("Start");
