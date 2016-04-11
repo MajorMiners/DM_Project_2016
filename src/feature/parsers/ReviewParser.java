@@ -85,6 +85,8 @@ public class ReviewParser {
         } else {
             ReviewSet reviewSet = new ReviewSet();
             reviewSet.getReviewSet().add(reviewEntry);
+
+            map.put(serialID, reviewSet);
         }
     }
 
