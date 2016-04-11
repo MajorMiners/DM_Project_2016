@@ -42,11 +42,28 @@ public class RegressionDemo {
 
             // TODO: Regression Model
         }
-
     }
 
-    // TODO
+    // TODO: returns a score for the regression model, from the list of reviews, for the given inspection set.
     private static double getNumericScoreFromTextAnalysis(List<Review> reviewSet) {
+
+        double totalScore = 0;
+
+        for (Review review : reviewSet) {
+
+            String reviewText = review.getText();                       // review text added by users
+            int responseCount = review.getReviewResponseCount();        // votes count = useful / funny / cool
+            int userProfile = 0;                                        // TODO: KV [Numeric Measure of user's words]
+
+            totalScore += assignScore(reviewText, userProfile, responseCount);
+        }
+
+        // return the average of scores
+        return totalScore / reviewSet.size();
+    }
+
+    // TODO: text analysis method signature
+    private static double assignScore(String reviewText, int userProfile, int responseCount) {
         return 0;
     }
 }
