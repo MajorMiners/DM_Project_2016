@@ -4,6 +4,7 @@ package parser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import utils.Date;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 public class JSONParserDemo {
     public static void main(String[] args) throws IOException, ParseException {
 
-        String filePath = "data/yelpdb/yelp_academic_dataset_business.json";
+        String filePath = "data/yelp_academic_dataset_review.json";
         BufferedReader br = new BufferedReader(new FileReader(filePath));
 
         String line;
@@ -23,28 +24,50 @@ public class JSONParserDemo {
             linecount++;
 
             if (linecount > 1) {
-                System.out.println(line);
+//                System.out.println(line);
 
                 String jsonString = line;
                 HashMap<String, String> map = parseJSON(jsonString);
 
-                System.out.println(map.toString());
+//                System.out.println(map.toString());
             }
         }
 
         br.close();
     }
 
-    private static HashMap<String, String> parseJSON(String jsonString) throws ParseException {
+    private static HashMap<String, String> parseJSON(String line) throws ParseException {
         HashMap<String, String> map = new HashMap<>();
 
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(jsonString);
+        Object obj = parser.parse(line);
 
         // get businessID
-        JSONObject businessID = (JSONObject)obj;
-        System.out.println(businessID.get("business_id"));
-        String businessIDValue = (String)businessID.get("business_id");
+        JSONObject jsonStringObject = (JSONObject) obj;
+
+        String businessID = getBusinessID(jsonStringObject);
+        int userRating = parseUserRating(jsonStringObject);
+        Date date = parseDate(jsonStringObject);
+        String reviewText = parseReviewText(jsonStringObject);
+
         return map;
+    }
+
+    private static String parseReviewText(JSONObject jsonStringObject) {
+        return (String) jsonStringObject.get("text");
+    }
+
+    private static Date parseDate(JSONObject jsonStringObject) {
+
+        String dateString = (String) jsonStringObject.get("date");
+        return new Date(dateString);
+    }
+
+    private static int parseUserRating(JSONObject jsonStringObject) {
+        return (int) (long) jsonStringObject.get("stars");
+    }
+
+    private static String getBusinessID(JSONObject jsonStringObject) {
+        return (String) jsonStringObject.get("business_id");
     }
 }

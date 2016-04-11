@@ -10,6 +10,10 @@ public class Review {
     private Date date;
     private String text;
 
+    public Review() {
+        // Empty Constructor
+    }
+
     public Review(String yelpID, int userRating, String dateString, String text) {
         this.userRating = userRating;
         this.date = new Date(dateString);
@@ -43,5 +47,9 @@ public class Review {
 
     public String getYelpID() {
         return yelpID;
+    }
+
+    public void setYelpID(String yelpID) {
+        this.yelpID = yelpID;
     }
 }

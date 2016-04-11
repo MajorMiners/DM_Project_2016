@@ -74,7 +74,8 @@ public class PearsonCorelation {
         System.out.println("Pearson coefficient for average stars: " + pearsonStars);
     }
 
-    private static Map<String, List<ReviewData>> buildMap(List<AllViolationData> violationList, List<ReviewData> reviewList) {
+    private static Map<String, List<ReviewData>> buildMap(List<AllViolationData> violationList, List<ReviewData>
+            reviewList) {
 
         Map<String, List<ReviewData>> map = new HashMap<>();
 

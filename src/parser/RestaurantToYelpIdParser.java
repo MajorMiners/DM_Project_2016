@@ -27,7 +27,7 @@ public class RestaurantToYelpIdParser {
         Map<String, String> map = new HashMap<String, String>();
 
         List<RestaurantToYelpIdData> list = readReadRestaurentToYelpData();
-        for(RestaurantToYelpIdData line : list){
+        for (RestaurantToYelpIdData line : list) {
             map.put(line.getRestaurantID(), line.getYelpID());
         }
 
@@ -35,10 +35,10 @@ public class RestaurantToYelpIdParser {
     }
 
     public static List<RestaurantToYelpIdData> readReadRestaurentToYelpData()
-			throws IOException {
-    	
-    	List<RestaurantToYelpIdData> list = new ArrayList<RestaurantToYelpIdData>();
-    	BufferedReader br = new BufferedReader(new FileReader(filePath));
+            throws IOException {
+
+        List<RestaurantToYelpIdData> list = new ArrayList<RestaurantToYelpIdData>();
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
         String line;
         int linecount = 0;
         while ((line = br.readLine()) != null) {
@@ -53,39 +53,37 @@ public class RestaurantToYelpIdParser {
         br.close();
         return list;
     }
-    
-    public static String getRestaurentIDFromYelpID(String yelpID) throws IOException
-    {
-    	Map<String, String> map = new HashMap<String, String>();
-    	
-    	List<RestaurantToYelpIdData> list = new ArrayList<RestaurantToYelpIdData>();
-    	list = readReadRestaurentToYelpData();
-    	for(RestaurantToYelpIdData line : list){
-    		map.put(line.getYelpID(), line.getRestaurantID());
-    	}
-    	
-    	if(map.containsKey(yelpID))
-    		return map.get(yelpID);
-    	else
-    		return "ID does not exists";
+
+    public static String getRestaurentIDFromYelpID(String yelpID) throws IOException {
+        Map<String, String> map = new HashMap<String, String>();
+
+        List<RestaurantToYelpIdData> list = new ArrayList<RestaurantToYelpIdData>();
+        list = readReadRestaurentToYelpData();
+        for (RestaurantToYelpIdData line : list) {
+            map.put(line.getYelpID(), line.getRestaurantID());
+        }
+
+        if (map.containsKey(yelpID))
+            return map.get(yelpID);
+        else
+            return "ID does not exists";
     }
-    
-    public static String getYelpIDFromRestaurentID(String restaurentID)
-    {
-    	Map<String, String> map = new HashMap<String, String>();
-    	
-    	List<RestaurantToYelpIdData> list = new ArrayList<RestaurantToYelpIdData>();
-    	
-    	for(RestaurantToYelpIdData line : list){
-    		map.put(line.getRestaurantID(),line.getYelpID());
-    	}
-    	
-    	if(map.containsKey(restaurentID))
-    		return map.get(restaurentID);
-    	else
-    		return "ID does not exists";
+
+    public static String getYelpIDFromRestaurentID(String restaurentID) {
+        Map<String, String> map = new HashMap<String, String>();
+
+        List<RestaurantToYelpIdData> list = new ArrayList<RestaurantToYelpIdData>();
+
+        for (RestaurantToYelpIdData line : list) {
+            map.put(line.getRestaurantID(), line.getYelpID());
+        }
+
+        if (map.containsKey(restaurentID))
+            return map.get(restaurentID);
+        else
+            return "ID does not exists";
     }
-    
+
     private static RestaurantToYelpIdData getRestaurantToYelpIdData(String line) {
 
         String[] tokens = line.split(",");

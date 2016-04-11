@@ -40,12 +40,11 @@ public class ViolationEntry {
     public void setSevereViolationCount(int severeViolationCount) {
         this.severeViolationCount = severeViolationCount;
     }
-    
-    public double calculatePenaltyScore(ViolationEntry entry)
-    {
-    	double penaltyScore = 0d;
-    	penaltyScore = entry.minorViolationCount + (100 * entry.majorViolationCount) + 
-    			(1000 * entry.severeViolationCount);
+
+    public double calculatePenaltyScore(ViolationEntry entry) {
+        double penaltyScore = 0d;
+        penaltyScore = entry.minorViolationCount + (100 * entry.majorViolationCount) +
+                (1000 * entry.severeViolationCount);
 
 //        penaltyScore = entry.minorViolationCount + entry.majorViolationCount + entry.severeViolationCount;
         return penaltyScore;

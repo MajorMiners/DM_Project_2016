@@ -10,55 +10,55 @@ import java.util.List;
 
 public class AllViolationParser {
 
-	public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
 //        readViolationData().forEach(System.out::println);
-	}
+    }
 
-	/**
-	 * Author: Kushagra, Joy on 04/02/2016
-	 * */
-	public static List<AllViolationData> readViolationData()
-			throws IOException {
+    /**
+     * Author: Kushagra, Joy on 04/02/2016
+     */
+    public static List<AllViolationData> readViolationData()
+            throws IOException {
 
-		List<AllViolationData> violationList = new ArrayList<AllViolationData>();
-		String filePath = "data/AllViolations.csv";
-		BufferedReader br = new BufferedReader(new FileReader(filePath));
+        List<AllViolationData> violationList = new ArrayList<AllViolationData>();
+        String filePath = "data/AllViolations.csv";
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
 
-		String line;
-		int linecount = 0;
-		while ((line = br.readLine()) != null) {
+        String line;
+        int linecount = 0;
+        while ((line = br.readLine()) != null) {
 
-			linecount++;
+            linecount++;
 
-			if (linecount > 1) {
-				AllViolationData lineData = getAllViolationData(line);
-				violationList.add(lineData);
-			}
-		}
+            if (linecount > 1) {
+                AllViolationData lineData = getAllViolationData(line);
+                violationList.add(lineData);
+            }
+        }
 
-		br.close();
+        br.close();
 
-		return violationList;
-	}
+        return violationList;
+    }
 
-	private static AllViolationData getAllViolationData(String line) {
+    private static AllViolationData getAllViolationData(String line) {
 
-		String[] tokens = line.split(",");
-		int tokenCount = tokens.length;
+        String[] tokens = line.split(",");
+        int tokenCount = tokens.length;
 
-		AllViolationData data = new AllViolationData();
+        AllViolationData data = new AllViolationData();
 
-		data.setSerialID(Integer.parseInt(tokens[0]));
-		data.setDate(tokens[1]);
-		data.setRestaurantID(tokens[2]);
-		data.getViolationEntry().setMinorViolationCount(
-				Integer.parseInt(tokens[3]));
-		data.getViolationEntry().setMajorViolationCount(
-				Integer.parseInt(tokens[4]));
-		data.getViolationEntry().setMajorViolationCount(
-				Integer.parseInt(tokens[5]));
+        data.setSerialID(Integer.parseInt(tokens[0]));
+        data.setDate(tokens[1]);
+        data.setRestaurantID(tokens[2]);
+        data.getViolationEntry().setMinorViolationCount(
+                Integer.parseInt(tokens[3]));
+        data.getViolationEntry().setMajorViolationCount(
+                Integer.parseInt(tokens[4]));
+        data.getViolationEntry().setMajorViolationCount(
+                Integer.parseInt(tokens[5]));
 
-		return data;
-	}
+        return data;
+    }
 }
