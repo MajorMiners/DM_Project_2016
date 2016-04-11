@@ -84,13 +84,8 @@ public class Instance {
         return map;
     }
 
-
+    /** Main method for testing purposes, can be removed **/
     public static void main(String[] args) throws IOException {
-
-//        Date d1 = new Date("2006-04-04");
-//        Date d2 = new Date("2009-1-6");
-//        System.out.println(Date.isEarlier(d1, d2));
-
 
         System.out.println("Start");
         Map<Integer, Instance> map = getMap_Instances();
