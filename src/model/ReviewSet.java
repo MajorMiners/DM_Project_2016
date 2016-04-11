@@ -9,7 +9,7 @@ public class ReviewSet {
     private double averageLength;
     private double averageRating;
     private int reviewCount;
-    // TODO: add review response
+    private int reviewResponse;
 
 
     public ReviewSet() {
@@ -20,6 +20,17 @@ public class ReviewSet {
         reviewSet.setAverageLength(getAverageLengthFromSet(reviewSet.getReviewSet()));
         reviewSet.setAverageRating(getAverageRating(reviewSet.getReviewSet()));
         reviewSet.setReviewCount(getReviewCount(reviewSet.getReviewSet()));
+        reviewSet.setReviewResponse(getReviewResponseCount(reviewSet.getReviewSet()));
+    }
+
+    private static int getReviewResponseCount(List<Review> reviewSet) {
+        int responseSum = 0;
+
+        for (Review review : reviewSet) {
+            responseSum += review.getReviewResponseCount();
+        }
+
+        return responseSum;
     }
 
     private static int getReviewCount(List<Review> reviewSet) {
@@ -84,5 +95,13 @@ public class ReviewSet {
 
     public void setReviewCount(int reviewCount) {
         this.reviewCount = reviewCount;
+    }
+
+    public int getReviewResponse() {
+        return reviewResponse;
+    }
+
+    public void setReviewResponse(int reviewResponse) {
+        this.reviewResponse = reviewResponse;
     }
 }

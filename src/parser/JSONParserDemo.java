@@ -24,7 +24,7 @@ public class JSONParserDemo {
             linecount++;
 
             if (linecount > 1) {
-//                System.out.println(line);
+                System.out.println(line);
 
                 String jsonString = line;
                 HashMap<String, String> map = parseJSON(jsonString);
@@ -49,8 +49,23 @@ public class JSONParserDemo {
         int userRating = parseUserRating(jsonStringObject);
         Date date = parseDate(jsonStringObject);
         String reviewText = parseReviewText(jsonStringObject);
+        int reviewResponseCount = parseReviewResponse(jsonStringObject);
 
         return map;
+    }
+
+    private static int parseReviewResponse(JSONObject jsonStringObject) {
+        int funnyCount = parseVoteTypes(jsonStringObject, "funny");
+        int usefulCount = parseVoteTypes(jsonStringObject, "useful");
+        int coolCount = parseVoteTypes(jsonStringObject, "cool");
+
+        return funnyCount + usefulCount + coolCount;
+    }
+
+    private static int parseVoteTypes(JSONObject jsonStringObject, String voteType) {
+        JSONObject votes = (JSONObject) jsonStringObject.get("votes");
+
+        return (int) (long) votes.get(voteType);
     }
 
     private static String parseReviewText(JSONObject jsonStringObject) {

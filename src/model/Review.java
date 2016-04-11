@@ -9,6 +9,7 @@ public class Review {
     private int userRating;
     private Date date;
     private String text;
+    private int reviewResponseCount;
 
     public Review() {
         // Empty Constructor
@@ -51,5 +52,13 @@ public class Review {
 
     public void setYelpID(String yelpID) {
         this.yelpID = yelpID;
+    }
+
+    public int getReviewResponseCount() {
+        return reviewResponseCount;
+    }
+
+    public void setReviewResponseCount(int reviewResponseCount) {
+        this.reviewResponseCount = reviewResponseCount;
     }
 }
