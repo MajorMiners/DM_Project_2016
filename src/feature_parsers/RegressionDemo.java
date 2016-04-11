@@ -18,17 +18,18 @@ public class RegressionDemo {
         List<AllViolationData> entries = AllViolationParser.readViolationData();
         Map<Integer, Instance> instanceMap = Instance.getMap_Instances();
 
-        // Predictors
+        // Predictors X
         Map<Integer, ReviewSet> reviewSetMapper = ReviewParser.buildReviewSetMap(instanceMap);
         Map<Integer, Double> map_serialID_pastViolation = PastPenalty.buildPastViolationsMap(entries);
 
         // Target Variable Y
-        Map<Integer, Double> mapTagetVariable = TargetVariable.getMap_TargetVariable(1, 1, 1);
+        Map<Integer, Double> mapTargetVariable = TargetVariable.getMap_TargetVariable(1, 1, 1);
 
-        for (int serialID : mapTagetVariable.keySet()) {
+        // foreach: inspection record [key : sampleID]
+        for (int serialID : mapTargetVariable.keySet()) {
 
             // Target Variable [Penalty Score]
-            double Y = mapTagetVariable.get(serialID);
+            double Y = mapTargetVariable.get(serialID);
 
             // Features
             double x1 = map_serialID_pastViolation.get(serialID);
