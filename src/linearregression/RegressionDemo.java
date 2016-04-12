@@ -42,7 +42,7 @@ public class RegressionDemo {
             double x19 = featureParser.getEnumFeaturebusinessType(serialID);
             double x20 = featureParser.getEnumFeatureNoiseLevel(serialID);
 
-            double x21 = featureParser.getTextAnalysisScore(serialID);
+            double x21 = featureParser.getTextAnalysisScore(serialID);      // fake score of 2, for now
 
             // TODO: More features to add here.
 
