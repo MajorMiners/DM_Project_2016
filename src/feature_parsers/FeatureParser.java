@@ -683,4 +683,9 @@ public class FeatureParser {
     public void setNoiseLevel(Map<Integer, Double> noiseLevel) {
         this.noiseLevel = noiseLevel;
     }
+
+    // TODO: faking results, for now
+    public double getTextAnalysisScore(double serialID) {
+        return 2;
+    }
 }

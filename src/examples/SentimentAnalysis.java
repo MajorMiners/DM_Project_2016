@@ -10,12 +10,13 @@ public class SentimentAnalysis {
                 " Very dirty place. Would not recommend this to anyone";
         NLP.init();
 
-        for (int i=0; i<10000; i++) {
-            System.out.println(NLP.findSentiment(review));
-            System.out.println(i);
-        }
+//        for (int i=0; i<10000; i++) {
+//            System.out.println(NLP.findSentiment(review));
+//            System.out.println(i);
+//        }
 
         System.out.println(NLP.findSentiment(review));
         System.out.println(NLP.findSentiment(review2));
+        System.out.println(NLP.findSentiment("fine"));
     }
 }
