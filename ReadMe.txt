@@ -1,3 +1,19 @@
+
+///////////////////////////////// 4 / 12 //////////////////////////////////////////////
+TODO:
+
+1. TextAnalysis								
+2. Normalize categorical / boolean features 		-- FeatureNormalizer (implement methods, currently all set to 'false', 0, etc)
+3. Handle empty values from Business.json 			-- BusinessParser / parseBusinessSet (handle return for null cases, currently 'false')
+4. Handle empty values from Review.json 			-- ReviewParser/ buildReviewSetMap ()
+
+NEXT: 
+1. Fix regression model / features
+2. Dump scores for each feature into a file, to fix slow IO (key-ed with serialID)
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
 Important Notice:
 	- handle exceptions inside functions. dont let any function to "throws xyzException".
 	- 

@@ -89,35 +89,13 @@ public class FeatureParser {
         targetVariable = populateTargetVariable();
     }
 
-    // TODO: features that need to be normalized
-    private double normalizeBoolean(boolean booleanFeature) {
-        return 0;
-    }
-
-    private double normalizeEnumForNoiseLevel(String noiseLevel) {
-        return 0;
-    }
-
-    private double normalizeEnumForBusinessType(String businessType) {
-        return 0;
-    }
-
-    private double normalizeInteger(int stars) {
-        return 0;
-    }
-
-    private double normalizeEnumForPriceRange(int priceRange) {
-        return 0;
-    }
-
-
     private Map<Integer, Double> populateFeatureMap21() {
         Map<Integer, Double> map = new HashMap<>();
 
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isAlcoholic());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isAlcoholic());
 
             map.put(key, value);
         }
@@ -132,7 +110,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeEnumForNoiseLevel(businessInstanceMapper.get(sampleID).getNoiseLevel());
+            double value = FeatureNormalizer.normalizeEnumForNoiseLevel(businessInstanceMapper.get(sampleID).getNoiseLevel());
 
             map.put(key, value);
         }
@@ -147,7 +125,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeEnumForBusinessType(businessInstanceMapper.get(sampleID).getBusinessType());
+            double value = FeatureNormalizer.normalizeEnumForBusinessType(businessInstanceMapper.get(sampleID).getBusinessType());
 
             map.put(key, value);
         }
@@ -162,7 +140,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeInteger(businessInstanceMapper.get(sampleID).getStars());
+            double value = FeatureNormalizer.normalizeInteger(businessInstanceMapper.get(sampleID).getStars());
 
             map.put(key, value);
         }
@@ -177,7 +155,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeEnumForPriceRange(businessInstanceMapper.get(sampleID).getPriceRange());
+            double value = FeatureNormalizer.normalizeEnumForPriceRange(businessInstanceMapper.get(sampleID).getPriceRange());
 
             map.put(key, value);
         }
@@ -192,7 +170,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isLatenight());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isLatenight());
 
             map.put(key, value);
         }
@@ -206,7 +184,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isGoodForDessert());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isGoodForDessert());
 
             map.put(key, value);
         }
@@ -220,7 +198,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isDeliveryAvailable());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isDeliveryAvailable());
 
             map.put(key, value);
         }
@@ -234,7 +212,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isUpscale());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isUpscale());
 
             map.put(key, value);
         }
@@ -248,7 +226,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isHipster());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isHipster());
 
             map.put(key, value);
         }
@@ -262,7 +240,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isTouristy());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isTouristy());
 
             map.put(key, value);
         }
@@ -276,7 +254,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isIntimate());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isIntimate());
 
             map.put(key, value);
         }
@@ -290,7 +268,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isRomantic());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isRomantic());
 
             map.put(key, value);
         }
@@ -304,7 +282,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isValetParking());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isValetParking());
 
             map.put(key, value);
         }
@@ -318,7 +296,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isWaiterService());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isWaiterService());
 
             map.put(key, value);
         }
@@ -333,7 +311,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = normalizeBoolean(businessInstanceMapper.get(sampleID).isAlcoholic());
+            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isAlcoholic());
 
             map.put(key, value);
         }
