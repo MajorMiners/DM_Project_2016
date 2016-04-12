@@ -23,7 +23,7 @@ public class ReviewParser {
      **/
     public static void main(String[] args) throws IOException, ParseException {
 
-        Map<Integer, Instance> instanceMap = Instance.getMap_Instances();
+        Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
 
         Map<Integer, ReviewSet> reviewSetMapper = buildReviewSetMap(instanceMap);
 
@@ -34,7 +34,7 @@ public class ReviewParser {
         // TODO: after complete testing for fasterIO
     }
 
-    public static Map<Integer, ReviewSet> buildReviewSetMap(Map<Integer, Instance> instanceMap) throws IOException,
+    public static Map<Integer, ReviewSet> buildReviewSetMap(Map<Integer, FeatureInstance> instanceMap) throws IOException,
             ParseException {
 
         Map<Integer, ReviewSet> map = new HashMap<>();
@@ -82,13 +82,13 @@ public class ReviewParser {
         }
     }
 
-    private static int locateSerialID(Review reviewEntry, Map<Integer, Instance> instanceMap) {
+    private static int locateSerialID(Review reviewEntry, Map<Integer, FeatureInstance> instanceMap) {
         Date currentDate = reviewEntry.getDate();
         String yelpID = reviewEntry.getYelpID();
 
         for (int serialID : instanceMap.keySet()) {
 
-            Instance instance = instanceMap.get(serialID);
+            FeatureInstance instance = instanceMap.get(serialID);
             Date startDate = instance.startDate;
             Date endDate = instance.endDate;
 

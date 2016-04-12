@@ -16,7 +16,7 @@ public class RegressionDemo {
 
         // Preprocessors
         List<AllViolationData> entries = AllViolationParser.readViolationData();
-        Map<Integer, Instance> instanceMap = Instance.getMap_Instances();
+        Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
 
         // Predictors X
         Map<Integer, ReviewSet> reviewSetMapper = ReviewParser.buildReviewSetMap(instanceMap);

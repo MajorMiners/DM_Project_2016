@@ -17,13 +17,13 @@ public class BusinessParser {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-        Map<Integer, Instance> instanceMap = Instance.getMap_Instances();
+        Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
 
         Map<String, BusinessSet> businessSetMapper = buildBusinessSetMap(instanceMap);
         Map<Integer, BusinessSet> businessInstanceMapper = buildBusinessInstanceMap(instanceMap, businessSetMapper);
     }
 
-    protected static Map<Integer, BusinessSet> buildBusinessInstanceMap(Map<Integer, Instance> instanceMap, Map<String,
+    protected static Map<Integer, BusinessSet> buildBusinessInstanceMap(Map<Integer, FeatureInstance> instanceMap, Map<String,
             BusinessSet> businessSetMapper) {
 
         Map<Integer, BusinessSet> map = new HashMap<>();
@@ -39,7 +39,7 @@ public class BusinessParser {
         return map;
     }
 
-    protected static Map<String, BusinessSet> buildBusinessSetMap(Map<Integer, Instance> instanceMap) throws
+    protected static Map<String, BusinessSet> buildBusinessSetMap(Map<Integer, FeatureInstance> instanceMap) throws
             IOException, ParseException {
 
         Map<String, BusinessSet> map = new HashMap<>();

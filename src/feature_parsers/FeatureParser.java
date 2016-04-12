@@ -17,7 +17,7 @@ public class FeatureParser {
 
     // Preprocessors
     List<AllViolationData> entries;
-    Map<Integer, Instance> instanceMap;
+    Map<Integer, FeatureInstance> instanceMap;
     Map<String, BusinessSet> businessSetMapper;
 
     // Predictors X
@@ -530,7 +530,7 @@ public class FeatureParser {
 
         // Preprocessors
         this.entries = AllViolationParser.readViolationData();
-        this.instanceMap = Instance.getMap_Instances();
+        this.instanceMap = FeatureInstance.getMap_Instances();
 
         // Predictors X -- Review.json
         this.reviewSetMapper = ReviewParser.buildReviewSetMap(instanceMap);

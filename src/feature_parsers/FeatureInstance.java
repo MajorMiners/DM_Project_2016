@@ -10,14 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Instance {
+public class FeatureInstance {
 
     String businessID;
     String yelpID;
     Date startDate;
     Date endDate;
 
-    public Instance(String businessID, Date startDate, Date endDate) {
+    public FeatureInstance(String businessID, Date startDate, Date endDate) {
 
         this.businessID = businessID;
         this.startDate = startDate;
@@ -27,13 +27,13 @@ public class Instance {
     }
 
 
-    public static Instance getInstance(AllViolationData entry, List<AllViolationData> list) {
+    public static FeatureInstance getInstance(AllViolationData entry, List<AllViolationData> list) {
 
         String businessID = entry.getRestaurantID();
         Date endDate = entry.getDate();
         Date startDate = calculateStartDate(entry, list);
 
-        return new Instance(businessID, startDate, endDate);
+        return new FeatureInstance(businessID, startDate, endDate);
     }
 
     private static Date calculateStartDate(AllViolationData entry, List<AllViolationData> list) {
@@ -69,15 +69,15 @@ public class Instance {
 
 
     // TODO: results can be stored in a file for faster IO
-    public static Map<Integer, Instance> getMap_Instances() throws IOException {
-        Map<Integer, Instance> map = new HashMap<>();
+    public static Map<Integer, FeatureInstance> getMap_Instances() throws IOException {
+        Map<Integer, FeatureInstance> map = new HashMap<>();
         List<AllViolationData> list = AllViolationParser.readViolationData();
 
         int index = 1;
         for (AllViolationData data : list) {
             System.out.println(index++ + " / " + list.size());
             int serialID = data.getSerialID();
-            Instance instance = getInstance(data, list);
+            FeatureInstance instance = getInstance(data, list);
 
             map.put(serialID, instance);
         }
@@ -87,13 +87,13 @@ public class Instance {
         return map;
     }
 
-    private static void populateYelpIds(Map<Integer, Instance> map) throws IOException {
+    private static void populateYelpIds(Map<Integer, FeatureInstance> map) throws IOException {
 
         Map<String, String> yelpLookup = RestaurantToYelpIdParser.BusinessToYelpIDMapper();
 
         for (int serialID : map.keySet()) {
 
-            Instance instance = map.get(serialID);
+            FeatureInstance instance = map.get(serialID);
             String businessID = instance.businessID;
 
             // update yelpID
@@ -107,7 +107,7 @@ public class Instance {
     public static void main(String[] args) throws IOException {
 
         System.out.println("Start");
-        Map<Integer, Instance> map = getMap_Instances();
+        Map<Integer, FeatureInstance> map = getMap_Instances();
         System.out.println("Done");
     }
 }
