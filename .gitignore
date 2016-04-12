@@ -10,4 +10,6 @@ target
 .classpath
 MajorMinors.iml
 *.log
+*.iml
+MajorMinors.iml
 *~
