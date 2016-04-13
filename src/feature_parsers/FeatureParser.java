@@ -5,6 +5,7 @@ import model.BusinessSet;
 import model.ReviewSet;
 import org.json.simple.parser.ParseException;
 import parser.AllViolationParser;
+import utils.FeatureNormalizer;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -516,14 +517,14 @@ public class FeatureParser {
 
         // Predictors X -- Review.json
         this.reviewSetMapper = ReviewParser.buildReviewSetMap(instanceMap);
-        this.map_serialID_pastViolation = PastPenalty.buildPastViolationsMap(entries);
+        this.map_serialID_pastViolation = PastPenaltyParser.buildPastViolationsMap(entries);
 
         // Predictors X -- Business.json
         businessSetMapper = BusinessParser.buildBusinessSetMap(instanceMap);
         businessInstanceMapper = BusinessParser.buildBusinessInstanceMap(instanceMap, businessSetMapper);
 
         // Target Variable Y
-        this.mapTargetVariable = TargetVariable.getMap_TargetVariable(1, 1, 1);
+        this.mapTargetVariable = TargetVariableParser.getMap_TargetVariable(1, 1, 1);
     }
 
     public void setAverageLength(Map<Integer, Double> averageLength) {

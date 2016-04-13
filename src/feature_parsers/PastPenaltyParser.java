@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PastPenalty {
+public class PastPenaltyParser {
 
     public static void main(String[] args) throws IOException {
 
@@ -40,7 +40,7 @@ public class PastPenalty {
                     if (restID.equals(currentRestID)) {
 
                         if (Date.isEarlier(date, currentDate)) {
-                            totalPenaltyScore += TargetVariable.calculateScore(lookupEntry.getViolationEntry(), 1, 1,
+                            totalPenaltyScore += TargetVariableParser.calculateScore(lookupEntry.getViolationEntry(), 1, 1,
                                     1);
                             penaltyCount++;
                         }

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TargetVariable {
+public class TargetVariableParser {
 
     /**
      * For testing purposes, main method can be deleted later

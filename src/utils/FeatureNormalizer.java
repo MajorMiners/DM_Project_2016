@@ -1,4 +1,4 @@
-package feature_parsers;/* Authored by Kushagra on 4/12/2016. */
+package utils;/* Authored by Kushagra on 4/12/2016. */
 
 // TODO: behaviour for categorical features
 public class FeatureNormalizer {
