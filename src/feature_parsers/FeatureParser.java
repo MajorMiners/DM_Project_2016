@@ -54,6 +54,8 @@ public class FeatureParser {
     private Map<Integer, Double> businessType;
     private Map<Integer, Double> noiseLevel;
 
+    private Map<Integer, Double> textAnalysisScore;
+
     private Map<Integer, Double> targetVariable;
 
     public FeatureParser() throws IOException, ParseException {
@@ -86,16 +88,18 @@ public class FeatureParser {
         businessType = populateFeatureMap19();
         noiseLevel = populateFeatureMap20();
 
+        textAnalysisScore = populateFeatureMap21();             // Text Analysis Score, pulled frm ReviewParser
+
         targetVariable = populateTargetVariable();
     }
 
     private Map<Integer, Double> populateFeatureMap21() {
         Map<Integer, Double> map = new HashMap<>();
 
-        for (int sampleID : businessInstanceMapper.keySet()) {
+        for (int sampleID : reviewSetMapper.keySet()) {
 
             int key = sampleID;
-            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isAlcoholic());
+            double value = reviewSetMapper.get(sampleID).getTextAnalysisScore();
 
             map.put(key, value);
         }
@@ -664,6 +668,14 @@ public class FeatureParser {
 
     // TODO: faking results, for now
     public double getTextAnalysisScore(double serialID) {
-        return 2;
+        return textAnalysisScore.get(serialID);
+    }
+
+    public Map<Integer, Double> getTextAnalysisScore() {
+        return textAnalysisScore;
+    }
+
+    public void setTextAnalysisScore(Map<Integer, Double> textAnalysisScore) {
+        this.textAnalysisScore = textAnalysisScore;
     }
 }

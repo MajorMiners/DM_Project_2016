@@ -1,5 +1,7 @@
 package model;/* Authored by Kushagra on 4/10/2016. */
 
+import utils.TextAnalyzer;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class ReviewSet {
     private double averageRating;
     private int reviewCount;
     private int reviewResponse;
+    private double textAnalysisScore;
 
 
     public ReviewSet() {
@@ -21,6 +24,32 @@ public class ReviewSet {
         reviewSet.setAverageRating(getAverageRating(reviewSet.getReviewSet()));
         reviewSet.setReviewCount(getReviewCount(reviewSet.getReviewSet()));
         reviewSet.setReviewResponse(getReviewResponseCount(reviewSet.getReviewSet()));
+        reviewSet.setTextAnalysisScore(getTextAnalysisScore(reviewSet.getReviewSet()));
+    }
+
+    // TODO: method that text analysis
+    /*
+        INPUT: List of Reviews for an inspection set
+        OUTPUT: a numeric score, after taking into account the following:
+         1. review's sentiment analysis score from StanfordNLP
+         2. score's boosting considering the user that posted the review (TODO: in Review Class)
+         3. score's boosting considering the kind of votes that review got
+         4. More..
+      */
+    private static double getTextAnalysisScore(List<Review> reviewSet) {
+
+        for (Review review : reviewSet) {
+
+            String reviewText = review.getText();
+            int reviewResponseCount = review.getReviewResponseCount();
+
+            double rawScore = TextAnalyzer.scoreReviewText(reviewText);
+        }
+
+        // take average of all reviews
+
+        // faking results for now
+        return 2;
     }
 
     private static int getReviewResponseCount(List<Review> reviewSet) {
@@ -103,5 +132,13 @@ public class ReviewSet {
 
     public void setReviewResponse(int reviewResponse) {
         this.reviewResponse = reviewResponse;
+    }
+
+    public double getTextAnalysisScore() {
+        return textAnalysisScore;
+    }
+
+    public void setTextAnalysisScore(double textAnalysisScore) {
+        this.textAnalysisScore = textAnalysisScore;
     }
 }

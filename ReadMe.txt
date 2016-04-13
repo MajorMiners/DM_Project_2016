@@ -1,10 +1,10 @@
 
 ///////////////////////////////// 4 / 12 //////////////////////////////////////////////
 Issues:
-1. Normalize categorical / boolean features 		-- FeatureNormalizer (currently all set to 'false', 0, etc)
+1. Normalize categorical / boolean features 			-- FeatureNormalizer (currently all set to 'false', 0, etc)
 2. Empty values from Business.json	 			-- BusinessParser / parseBusinessSet (handle return for null cases, currently 'false')
 3. Empty values from Review.json 				-- ReviewParser/ buildReviewSetMap ()
-4. TextAnalysis								
+4. TextAnalysis									-- 	ReviewSet / getTextAnalysisScore + TextAnalyzer / isHygieneRelated
 
 ////////////////////////////////////////////////////////////////////////////////////
 
