@@ -32,7 +32,7 @@ public class TopKWordsGenerator {
                 // get a particular review from the list of reviews
                 String reviewText = review.getText();
 
-                // ... find top 1000 / update the frequency count of words found so far 
+                // ... find top 1000 / update the frequency count of words found so far
 
             }
 

@@ -31,7 +31,7 @@ public class TextAnalyzer {
 
         // TODO:
 
-        return true;
-//        return false;
+//        return true;        // turn on NLP
+        return false;     // turn off NLP
     }
 }
