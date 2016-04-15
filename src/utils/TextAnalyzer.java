@@ -2,6 +2,7 @@ package utils;/* Authored by Kushagra on 4/13/2016. */
 
 import preprocessing.NLP;
 
+@SuppressWarnings("ConstantConditions")
 public class TextAnalyzer {
 
     public static double baseScore = 2;
@@ -30,6 +31,7 @@ public class TextAnalyzer {
 
         // TODO:
 
-        return false;
+        return true;
+//        return false;
     }
 }
