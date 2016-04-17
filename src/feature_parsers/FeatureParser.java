@@ -3,7 +3,10 @@ package feature_parsers;/* Authored by Kushagra on 4/11/2016. */
 import model.AllViolationData;
 import model.BusinessSet;
 import model.ReviewSet;
+import model.ViolationEntry;
+
 import org.json.simple.parser.ParseException;
+
 import parser.AllViolationParser;
 import utils.FeatureNormalizer;
 
@@ -28,6 +31,7 @@ public class FeatureParser {
 
     // Target Variable Y
     Map<Integer, Double> mapTargetVariable;
+    Map<Integer, ViolationEntry> mapTargetVariables;
 
 
     // Class private locators
@@ -58,9 +62,13 @@ public class FeatureParser {
     private Map<Integer, Double> textAnalysisScore;
 
     private Map<Integer, Double> targetVariable;
+    
+    private Map<Integer, ViolationEntry> targetVariables;
+
 
     public FeatureParser() throws IOException, ParseException {
 
+    	System.out.println("Hello from feature parser constructor");
         buildParser();
 
         // -- Review.json
@@ -92,6 +100,7 @@ public class FeatureParser {
         textAnalysisScore = populateFeatureMap21();             // Text Analysis Score, pulled frm ReviewParser
 
         targetVariable = populateTargetVariable();
+        targetVariables = populateTargetVariables();
     }
 
     private Map<Integer, Double> populateFeatureMap21() {
@@ -189,7 +198,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isGoodForDessert());
+            double value = FeatureNormalizer.normalizeGoodFeatures(businessInstanceMapper.get(sampleID).isGoodForDessert());
 
             map.put(key, value);
         }
@@ -217,7 +226,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isUpscale());
+            double value = FeatureNormalizer.normalizeGoodFeatures(businessInstanceMapper.get(sampleID).isUpscale());
 
             map.put(key, value);
         }
@@ -259,7 +268,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isIntimate());
+            double value = FeatureNormalizer.normalizeGoodFeatures(businessInstanceMapper.get(sampleID).isIntimate());
 
             map.put(key, value);
         }
@@ -273,7 +282,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isRomantic());
+            double value = FeatureNormalizer.normalizeGoodFeatures(businessInstanceMapper.get(sampleID).isRomantic());
 
             map.put(key, value);
         }
@@ -287,7 +296,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isValetParking());
+            double value = FeatureNormalizer.normalizeGoodFeatures(businessInstanceMapper.get(sampleID).isValetParking());
 
             map.put(key, value);
         }
@@ -301,7 +310,7 @@ public class FeatureParser {
         for (int sampleID : businessInstanceMapper.keySet()) {
 
             int key = sampleID;
-            double value = FeatureNormalizer.normalizeBoolean(businessInstanceMapper.get(sampleID).isWaiterService());
+            double value = FeatureNormalizer.normalizeGoodFeatures(businessInstanceMapper.get(sampleID).isWaiterService());
 
             map.put(key, value);
         }
@@ -338,6 +347,22 @@ public class FeatureParser {
 
         return map;
     }
+    
+    
+    private Map<Integer, ViolationEntry> populateTargetVariables() {
+
+        Map<Integer, ViolationEntry> map = new HashMap<>();
+
+        for (int serialID : mapTargetVariables.keySet()) {
+
+            int key = serialID;
+            ViolationEntry value = mapTargetVariables.get(serialID);
+
+            map.put(key, value);
+        }
+
+        return map;
+    }
 
     public Set<Integer> getInstances() {
         return this.averageLength.keySet();
@@ -345,6 +370,10 @@ public class FeatureParser {
 
     public double getTargetVariable(int serialID) {
         return targetVariable.get(serialID);
+    }
+    
+    public ViolationEntry getTargetVariables(int serialID) {
+        return targetVariables.get(serialID);
     }
 
     // Review.json getters
@@ -440,8 +469,9 @@ public class FeatureParser {
         for (int sampleID : reviewSetMapper.keySet()) {
 
             int key = sampleID;
+          
             double value = reviewSetMapper.get(sampleID).getAverageLength();
-
+           
             map.put(key, value);
         }
 
@@ -511,6 +541,7 @@ public class FeatureParser {
 
     private void buildParser() throws IOException, ParseException {
 
+    	System.out.println("Hello from buildParser in Feature Parser");
         // Preprocessors
         this.entries = AllViolationParser.readViolationData();
         this.instanceMap = FeatureInstance.getMap_Instances();
@@ -525,6 +556,7 @@ public class FeatureParser {
 
         // Target Variable Y
         this.mapTargetVariable = TargetVariableParser.getMap_TargetVariable(1, 1, 1);
+        this.mapTargetVariables = TargetVariableParser.getMap_TargetVariables();
     }
 
     public void setAverageLength(Map<Integer, Double> averageLength) {

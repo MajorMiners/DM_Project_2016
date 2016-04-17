@@ -1,6 +1,7 @@
 package linearregression;/* Authored by Kushagra on 4/11/2016. */
 
 import feature_parsers.FeatureParser;
+import model.ViolationEntry;
 
 import org.json.simple.parser.ParseException;
 
@@ -43,6 +44,10 @@ public class RegressionDemo {
 		Attribute featureNoiseLevel_attr = new Attribute("featureNoiseLevel");
 		//Attribute sentiments_attr = new Attribute("sentiments");
 		Attribute feature_attr = new Attribute("featureTarget");
+		Attribute featureViolation1 = new Attribute("featureViolation1");
+		Attribute featureViolation2 = new Attribute("featureViolation2");
+		Attribute featureViolation3 = new Attribute("featureViolation3");
+		
 		
 		ArrayList attrList = new ArrayList<Attribute>();
 		attrList.add(featureAverageLength_attr);
@@ -65,14 +70,39 @@ public class RegressionDemo {
 		attrList.add(featureNoiseLevel_attr);
 		attrList.add(feature_attr);
 		
+		
 		Instances trainData = new Instances("prediction", attrList, 0);
 		int cIdx = trainData.numAttributes() - 1;
 		trainData.setClassIndex(cIdx);
 		
 		Instances testData = new Instances("prediction", attrList, 0);
-		int cIdx1 = trainData.numAttributes() - 1;
-		testData.setClassIndex(cIdx1);
+		cIdx = testData.numAttributes() - 1;
+		testData.setClassIndex(cIdx);
 	
+		Instances trainData1 = new Instances("prediction", attrList, 0);
+		cIdx = trainData1.numAttributes() - 1;
+		trainData1.setClassIndex(cIdx);
+		
+		Instances testData1 = new Instances("prediction", attrList, 0);
+		cIdx = testData1.numAttributes() - 1;
+		testData1.setClassIndex(cIdx);
+		
+		Instances trainData2 = new Instances("prediction", attrList, 0);
+		cIdx= trainData2.numAttributes() - 1;
+		trainData2.setClassIndex(cIdx);
+		
+		Instances testData2 = new Instances("prediction", attrList, 0);
+		cIdx = testData2.numAttributes() - 1;
+		testData2.setClassIndex(cIdx);
+		
+		Instances trainData3 = new Instances("prediction", attrList, 0);
+		cIdx= trainData3.numAttributes() - 1;
+		trainData3.setClassIndex(cIdx);
+		
+		Instances testData3 = new Instances("prediction", attrList, 0);
+		cIdx= testData3.numAttributes() - 1;
+		testData3.setClassIndex(cIdx);
+		
         Set<Integer> instances = featureParser.getInstances();
         int n = (int) (instances.size() * 0.8);
         
@@ -81,7 +111,13 @@ public class RegressionDemo {
         	
             // Target Variables Y
             double Y = featureParser.getTargetVariable(serialID);
-
+            ViolationEntry violationEntry = featureParser.getTargetVariables(serialID);
+            
+            double v1 = violationEntry.getMinorViolationCount();
+            double v2 = violationEntry.getMajorViolationCount();
+            double v3 = violationEntry.getSevereViolationCount();
+            
+            
             // Predictors X -- Review.json
             double x1 = featureParser.getFeatureAverageLength(serialID);
             double x2 = featureParser.getFeatureAverageRating(serialID);
@@ -133,10 +169,24 @@ public class RegressionDemo {
             inst.setValue(feature_attr, Y);
             
             if(counter >= n)
-            	testData.add(inst);
-            else
+            	{
+            		testData.add(inst);
+            		inst.setValue(feature_attr, v1);
+            		testData1.add(inst);
+            		inst.setValue(feature_attr, v2);
+            		testData2.add(inst);
+            		inst.setValue(feature_attr, v3);
+            		testData3.add(inst);
+            	}
+            else{
             	trainData.add(inst);  
-            
+            	inst.setValue(feature_attr, v1);
+            	trainData1.add(inst);
+        		inst.setValue(feature_attr, v2);
+        		trainData2.add(inst);
+        		inst.setValue(feature_attr, v3);
+        		trainData3.add(inst);
+            }
             counter++;
         }
         
@@ -154,6 +204,68 @@ public class RegressionDemo {
 			e.printStackTrace();
 		}
         
+        
+   	 /*******************************************************************/
+		 
+		 System.out.println("========================================================================================");
+		 System.out.println("Regression for minor violations");
+		 
+		 
+        LinearRegression lrModelViolation1 = new LinearRegression();
+        
+        try {
+        	lrModelViolation1.setRidge(0.68);
+        	lrModelViolation1.buildClassifier(trainData1);
+			  
+			  Evaluation eval = new Evaluation(trainData1);
+			  Random rand = new Random(1);  // using seed = 1
+			  eval.evaluateModel(lrModelViolation1, testData1);
+			  System.out.println(eval.toSummaryString());
+			} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        
+        /*******************************************************************/
+		 
+		 System.out.println("========================================================================================");
+		 System.out.println("Regression for major violations");
+		 
+		 
+	        LinearRegression lrModelViolation2 = new LinearRegression();
+	        
+	        try {
+	        	lrModelViolation2.setRidge(0.68);
+	        	lrModelViolation2.buildClassifier(trainData2);
+				  
+				  Evaluation eval = new Evaluation(trainData2);
+				  Random rand = new Random(1);  // using seed = 1
+				  eval.evaluateModel(lrModelViolation2, testData2);
+				  System.out.println(eval.toSummaryString());
+				} catch (Exception e) {
+				e.printStackTrace();
+			}
+        
+	        
+	        /*******************************************************************/
+			 
+			 System.out.println("========================================================================================");
+			 System.out.println("Regression for major violations");
+			 
+			 
+		        LinearRegression lrModelViolation3 = new LinearRegression();
+		        
+		        try {
+		        	lrModelViolation3.setRidge(0.68);
+		        	lrModelViolation3.buildClassifier(trainData3);
+					  
+					  Evaluation eval = new Evaluation(trainData3);
+					  Random rand = new Random(1);  // using seed = 1
+					  eval.evaluateModel(lrModelViolation3, testData3);
+					  System.out.println(eval.toSummaryString());
+					} catch (Exception e) {
+					e.printStackTrace();
+				}
   
     }
 }

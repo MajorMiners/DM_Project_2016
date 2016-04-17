@@ -22,7 +22,8 @@ public class TargetVariableParser {
      **/
     public static void main(String[] args) throws IOException {
 
-        printMap(getMap_TargetVariable(1, 1, 1));
+        //printMap(getMap_TargetVariable(1, 1, 1));
+    	printViolationMap();
     }
 
     public static void printMap(Map<Integer, Double> map) {
@@ -30,6 +31,17 @@ public class TargetVariableParser {
         for (int serialID : map.keySet()) {
 
             double score = map.get(serialID);
+
+            System.out.println(serialID + "\t: " + score);
+        }
+    }
+    
+    public static void printViolationMap() throws IOException {
+
+    	Map<Integer, ViolationEntry> map = getMap_TargetVariables();
+        for (int serialID : map.keySet()) {
+
+            ViolationEntry score = map.get(serialID);
 
             System.out.println(serialID + "\t: " + score);
         }
@@ -52,7 +64,24 @@ public class TargetVariableParser {
 
         return map;
     }
+    
+    public static Map<Integer, ViolationEntry> getMap_TargetVariables() throws IOException {
 
+        HashMap<Integer, ViolationEntry> map = new HashMap<>();
+
+        List<AllViolationData> rawViolationEntries = AllViolationParser.readViolationData();
+
+        for (AllViolationData entry : rawViolationEntries) {
+
+            int serialID = entry.getSerialID();
+            ViolationEntry score = entry.getViolationEntry();
+
+            map.put(serialID, score);
+        }
+
+        return map;
+    }
+   
     public static double calculateScore(ViolationEntry violationEntry, int v1, int v2, int v3) {
 
         return v1 * violationEntry.getMinorViolationCount() + v2 * violationEntry.getMajorViolationCount() + v3 *
