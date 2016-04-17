@@ -46,13 +46,13 @@ public class ReviewParser {
         int index = 1;
         int totalLines = FileIO.countLines(filePath);
         while ((line = br.readLine()) != null) {
-            System.out.println(line);
+            //System.out.println(line);
             Review reviewEntry = getReviewEntry(line);
             int serialID = locateSerialID(reviewEntry, instanceMap);
 
             insertToMap(serialID, reviewEntry, map);
 
-            System.out.println(index++ + " / " + totalLines);
+            //System.out.println(index++ + " / " + totalLines);
         }
 
         br.close();

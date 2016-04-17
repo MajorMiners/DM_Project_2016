@@ -31,7 +31,7 @@ public class TargetVariableParser {
 
             double score = map.get(serialID);
 
-            System.out.println(serialID + "\t: " + score);
+            //System.out.println(serialID + "\t: " + score);
         }
     }
 

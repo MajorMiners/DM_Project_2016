@@ -19,7 +19,7 @@ public class WekaPearsonCorelation {
 		
 		 FeatureParser featureParser = new FeatureParser();
 		 
-		 Attribute featureAverageLength_attr = new Attribute("featureAverageLength");
+		 	Attribute featureAverageLength_attr = new Attribute("featureAverageLength");
 			Attribute featureAverageRating_attr = new Attribute("featureAverageRating");
 			Attribute featureAverageReviewCount_attr = new Attribute("featureAverageReviewCount");
 			Attribute featurePenaltyScore_attr = new Attribute("featurePenaltyScore");

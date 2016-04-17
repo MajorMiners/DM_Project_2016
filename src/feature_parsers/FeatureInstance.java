@@ -75,7 +75,7 @@ public class FeatureInstance {
 
         int index = 1;
         for (AllViolationData data : list) {
-            System.out.println(index++ + " / " + list.size());
+            //System.out.println(index++ + " / " + list.size());
             int serialID = data.getSerialID();
             FeatureInstance instance = getInstance(data, list);
 

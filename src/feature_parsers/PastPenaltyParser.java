@@ -16,7 +16,7 @@ public class PastPenaltyParser {
         List<AllViolationData> entries = AllViolationParser.readViolationData();
         Map<Integer, Double> map_serialID_pastViolation = buildPastViolationsMap(entries);
 
-        System.out.println(map_serialID_pastViolation.toString());
+        //System.out.println(map_serialID_pastViolation.toString());
     }
 
     public static Map<Integer, Double> buildPastViolationsMap(List<AllViolationData> entries) {
