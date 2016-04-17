@@ -104,9 +104,7 @@ public class SpearmanCorelation {
 		 System.out.println("PriceRange: "+ eval.correlation(f17, Y));
 		 System.out.println("IsBusinessStars: "+ eval.correlation(f18, Y));
 		 System.out.println("NoiseLevel: "+ eval.correlation(f20, Y));
-<<<<<<< HEAD
 		 System.out.println("CuisineType: "+ eval.correlation(f21, Y));
-=======
 		 
 		 /*******************************************************************/
 		 
@@ -163,7 +161,6 @@ public class SpearmanCorelation {
 		 
 		 System.out.println("========================================================================================");
 		 System.out.println("Spearmans Correlation for severe violations");
->>>>>>> origin/master
 		 
 		 System.out.println("AverageLength: "+ eval.correlation(f1, v3));
 		 System.out.println("AverageRating: "+ eval.correlation(f2, v3));
