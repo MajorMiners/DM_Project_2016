@@ -15,6 +15,61 @@ public class FeatureNormalizer {
    	else
    		return 1;
    }
+   
+   public static double normalizeEnumForCuisine(String category) {
+       switch(category){
+       	case "Delis":
+       	case "Sandwiches":
+       	case "Burgers":
+       	case "Fast Food":
+       		return 1;
+       	case "Chinese": 
+       		return 2;
+       	case "Indian" : 
+       		return 3;
+       	case "Maxican":
+       		return 4;
+       	case "Italian": 
+       		return 4;
+       	case "Bakeries": 
+       		return 5;
+       	case "Seafood": 
+       		return 6;
+       	case "Breakfast & Brunch":
+       	case "Cafes":
+       	case "Coffee & Tea":
+       		return 7;
+       	case "Bars":
+       	case "Nightlife": 
+       	case "Pubs": 
+       	case "Gay Bars":  
+       		return 8;
+       	case "Pizza": 
+       		return 9;
+       	case "Thai": 
+       		return 10;
+       	case "Mediterranean":
+       	case "Falafel":
+       	case "Middle Eastern":
+       		return 11;
+       	case "Ice Cream & Frozen Yogurt": 
+       		return 12;
+       	case "Sushi Bars": 
+       		return 13;
+       	case "Caribbean": 
+       		return 14;
+       	case "American (New)":
+       	case "American (Traditional)":
+       		return 15;
+       	case "African": 
+       	case "Moroccan": 
+       		return 16;	
+       	case "Cuban": 
+       		return 17;	
+       	default: 
+       		return 0;
+       }
+   }
 
 
     public static double normalizeEnumForNoiseLevel(String noiseLevel) {

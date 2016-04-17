@@ -51,7 +51,7 @@ public class BusinessParser {
         int index = 1;
         int totalLines = FileIO.countLines(filePath);
         while ((line = br.readLine()) != null) {
-            System.out.println(line);
+           // System.out.println(line);
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(line);
             JSONObject jsonStringObject = (JSONObject) obj;
@@ -67,7 +67,7 @@ public class BusinessParser {
                 map.put(yelpID, businessSet);
             }
 
-            System.out.println(index++ + " / " + totalLines);
+           // System.out.println(index++ + " / " + totalLines);
         }
 
         br.close();
@@ -98,6 +98,7 @@ public class BusinessParser {
         businessSet.setGoodForDessert(JSONParserUtil.parseDessert(jsonStringObject));
         businessSet.setLatenight(JSONParserUtil.parseLateNight(jsonStringObject));
         businessSet.setPriceRange(JSONParserUtil.parsePriceRange(jsonStringObject));
+        businessSet.setCuisineType(JSONParserUtil.parseCuisineType(jsonStringObject));
         businessSet.setStars(JSONParserUtil.parseStars(jsonStringObject));
         businessSet.setBusinessType(JSONParserUtil.parseBusinessType(jsonStringObject));
         businessSet.setNoiseLevel(JSONParserUtil.parseNoiseLevel(jsonStringObject));

@@ -51,11 +51,17 @@ public class FeatureParser {
 
     private Map<Integer, Double> priceRange;
     private Map<Integer, Double> stars;
-
+    private Map<Integer, Double> cuisine;
+    
     private Map<Integer, Double> businessType;
     private Map<Integer, Double> noiseLevel;
 
     private Map<Integer, Double> textAnalysisScore;
+    
+    /* TODO:
+     * add cuisine type and zipcode as feature
+     * 
+     */
 
     private Map<Integer, Double> targetVariable;
 
@@ -91,8 +97,25 @@ public class FeatureParser {
 
         textAnalysisScore = populateFeatureMap21();             // Text Analysis Score, pulled frm ReviewParser
 
+        cuisine = populateFeatureMap22();
         targetVariable = populateTargetVariable();
     }
+    
+    
+      private Map<Integer, Double> populateFeatureMap22() {
+        Map<Integer, Double> map = new HashMap<>();
+
+        for (int sampleID : businessInstanceMapper.keySet()) {
+
+            int key = sampleID;
+            double value = FeatureNormalizer.normalizeEnumForCuisine(businessInstanceMapper.get(sampleID).getCuisineType());
+
+            map.put(key, value);
+        }
+
+        return map;
+    }
+     
 
     private Map<Integer, Double> populateFeatureMap21() {
         Map<Integer, Double> map = new HashMap<>();
@@ -431,6 +454,10 @@ public class FeatureParser {
     public double getFeaturePenaltyScore(int serialID) {
         return averagePenaltyScore.get(serialID);
     }
+    
+    public double getEnumFeatureCusineType(int serialID) {
+        return cuisine.get(serialID);
+    }
 
 
     private Map<Integer, Double> populateFeatureMap1() {
@@ -665,6 +692,14 @@ public class FeatureParser {
 
     public void setNoiseLevel(Map<Integer, Double> noiseLevel) {
         this.noiseLevel = noiseLevel;
+    }
+    
+    public Map<Integer, Double> getCuisineType() {
+        return cuisine;
+    }
+
+    public void setCusineType(Map<Integer, Double> cuisine) {
+        this.cuisine = cuisine;
     }
 
     // TODO: faking results, for now

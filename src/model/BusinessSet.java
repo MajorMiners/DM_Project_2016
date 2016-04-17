@@ -18,9 +18,10 @@ public class BusinessSet {
 
     private int priceRange;
     private int stars;
-
+    
     private String businessType;
     private String noiseLevel;
+    private String category;
 
     public BusinessSet() {
         // Empty constructor
@@ -144,6 +145,14 @@ public class BusinessSet {
 
     public void setNoiseLevel(String noiseLevel) {
         this.noiseLevel = noiseLevel;
+    }
+    
+    public String getCuisineType() {
+        	return category;
+    	}
+
+    public void setCuisineType(String category) {
+        this.category = category;
     }
 
     public String getYelpID() {

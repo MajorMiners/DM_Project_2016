@@ -38,6 +38,7 @@ public class SpearmanCorelation {
 		 double[]  f18 = new double[trainInstances.size()];
 		 double[]  f19 = new double[trainInstances.size()];
 		 double[]  f20 = new double[trainInstances.size()];
+		 double[] f21 = new double[trainInstances.size()];
 		 
 		 double[]  Y= new double[trainInstances.size()];
 		 int cnt=0;
@@ -68,7 +69,7 @@ public class SpearmanCorelation {
             f18[cnt] = featureParser.getFeatureIsBusinessStars(serialID);
             //f19[cnt] = featureParser.getEnumFeaturebusinessType(serialID);
             f20[cnt] = featureParser.getEnumFeatureNoiseLevel(serialID);
-
+            f21[cnt] = featureParser.getEnumFeatureCusineType(serialID);
            // double x21 = featureParser.getTextAnalysisScore(serialID);      // fake score of 2, for now  
            cnt++;
         }
@@ -93,7 +94,7 @@ public class SpearmanCorelation {
 		 System.out.println("PriceRange: "+ eval.correlation(f17, Y));
 		 System.out.println("IsBusinessStars: "+ eval.correlation(f18, Y));
 		 System.out.println("NoiseLevel: "+ eval.correlation(f20, Y));
-		 
+		 System.out.println("CuisineType: "+ eval.correlation(f21, Y));
 		 
 	}
 }
