@@ -15,9 +15,12 @@ public class HygieneIdentifier {
 
     public static HashSet<String> hygieneDictionary = new HashSet<String>();
 
+    public HashSet<String> getDict(){
+    	return hygieneDictionary;
+    }
     public static void readHygieneDictionary() {
         try {
-            FileReader fr = new FileReader("data/hygiene-dictionary.txt");
+            FileReader fr = new FileReader("data/hygiene_dictionary.txt");
             BufferedReader br = new BufferedReader(fr);
             englishStemmer stemmer = new englishStemmer();
             String line = br.readLine();
@@ -111,6 +114,54 @@ public class HygieneIdentifier {
             }
         }
     }
+    
+    public static void classifyText(CsvWriter writer) {
+
+        List<ReviewData> reviews = ReviewParser.readReviews();
+        englishStemmer stemmer = new englishStemmer();
+        for (String eachSet : hygieneDictionary) {
+            System.out.println("+ " + eachSet);
+        }
+        for (ReviewData review : reviews) {
+            String[] sentences = review.getText().split("\\. ");
+            String newReview = "";
+            boolean isReviewRelated = false;
+            
+            for (String sentence : sentences) {
+                String[] words = sentence.split(" ");
+                
+                for (String eachWord : words) {
+                    stemmer.setCurrent(eachWord);
+                    
+                    if (stemmer.stem()) {
+                        String stemWord = stemmer.getCurrent();
+                        
+                        if (hygieneDictionary.contains(stemWord)) {
+                            isReviewRelated = true;
+                            newReview += sentence + ". "; // build a new review with sentences related to hygiene only
+                            break;
+                        }
+                    } else {
+                        System.out.println("NOT sentence stemmer stem :- " + eachWord);
+                    }
+                }
+            }
+
+            NLP.init();
+            if (isReviewRelated) {
+                int sentiment = NLP.findSentiment(newReview);
+                writeToCsv(writer, review, newReview, sentiment);
+            } else {
+                int stars = review.getStars();
+                if (stars >= 4) {
+                    String text = review.getText();
+                    int sentiment = NLP.findSentiment(text);
+                    writeToCsv(writer, review, text, sentiment);
+                }
+            }
+        }
+    }
+    
 
     public static void main(String[] args) {
         preprocessData();

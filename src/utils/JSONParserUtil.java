@@ -83,7 +83,7 @@ public class JSONParserUtil {
 		for(Object entry: categories){
 			
 			String str = entry.toString();
-			System.out.println(str);
+			//System.out.println(str);
 			if(catMap.contains(str)){
 				return str;
 			}

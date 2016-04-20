@@ -63,7 +63,7 @@ public class FeatureParser {
     private Map<Integer, Double> textAnalysisScore;
     
     /* TODO:
-     * add cuisine type and zipcode as feature
+     * add zipcode as feature
      * 
      */
 

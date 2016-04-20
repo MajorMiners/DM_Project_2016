@@ -42,7 +42,8 @@ public class RegressionDemo {
 		Attribute featurePriceRange_attr = new Attribute("featurePriceRange");
 		Attribute featureIsBusinessStars_attr = new Attribute("featureIsBusinessStars");
 		Attribute featureNoiseLevel_attr = new Attribute("featureNoiseLevel");
-		//Attribute sentiments_attr = new Attribute("sentiments");
+		Attribute featureCuisineType_attr = new Attribute("featureCuisineType");
+		Attribute sentiments_attr = new Attribute("sentiments");
 		Attribute feature_attr = new Attribute("featureTarget");
 		Attribute featureViolation1 = new Attribute("featureViolation1");
 		Attribute featureViolation2 = new Attribute("featureViolation2");
@@ -68,6 +69,8 @@ public class RegressionDemo {
 		attrList.add(featureisLatenight_attr);
 		attrList.add(featurePriceRange_attr);
 		attrList.add(featureNoiseLevel_attr);
+		attrList.add(featureCuisineType_attr);
+		attrList.add(sentiments_attr);
 		attrList.add(feature_attr);
 		
 		
@@ -141,12 +144,12 @@ public class RegressionDemo {
             double x18 = featureParser.getFeatureIsBusinessStars(serialID);
             double x19 = featureParser.getEnumFeaturebusinessType(serialID);
             double x20 = featureParser.getEnumFeatureNoiseLevel(serialID);
-
-           // double x21 = featureParser.getTextAnalysisScore(serialID);      // fake score of 2, for now
+            double x21 = featureParser.getEnumFeatureCusineType(serialID);
+            double x22 = featureParser.getTextAnalysisScore(serialID);      // fake score of 2, for now
 
             // TODO: More features to add here.
             Instance inst;
-			inst = new DenseInstance(19);
+			inst = new DenseInstance(22);
             
             inst.setValue(featureAverageLength_attr, x1);
             inst.setValue(featureAverageRating_attr, x2);
@@ -166,6 +169,8 @@ public class RegressionDemo {
             inst.setValue(featureisLatenight_attr, x16);
             inst.setValue(featurePriceRange_attr, x17);
             inst.setValue(featureNoiseLevel_attr, x20);
+            inst.setValue(featureCuisineType_attr, x21);
+            inst.setValue(sentiments_attr, x22);
             inst.setValue(feature_attr, Y);
             
             if(counter >= n)

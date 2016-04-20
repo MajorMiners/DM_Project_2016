@@ -3,7 +3,10 @@ package model;/* Authored by Kushagra on 4/10/2016. */
 import utils.TextAnalyzer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+
+import preprocessing.HygieneIdentifier;
 
 public class ReviewSet {
 
@@ -37,19 +40,24 @@ public class ReviewSet {
          4. More..
       */
     private static double getTextAnalysisScore(List<Review> reviewSet) {
-
+    	
+    	HygieneIdentifier hygieneIdf = new HygieneIdentifier();
+    	hygieneIdf.readHygieneDictionary();
+    	HashSet<String> dict = hygieneIdf.getDict();
+    	double total =0.0;
+    	TextAnalyzer textAnalyser = new TextAnalyzer();
         for (Review review : reviewSet) {
 
             String reviewText = review.getText();
             int reviewResponseCount = review.getReviewResponseCount();
 
-            double rawScore = TextAnalyzer.scoreReviewText(reviewText);
+            total += textAnalyser.scoreReviewText(reviewText,dict);
         }
 
         // take average of all reviews
-
+        double avg = total/reviewSet.size();
         // faking results for now
-        return 2;
+        return avg;
     }
 
     private static int getReviewResponseCount(List<Review> reviewSet) {

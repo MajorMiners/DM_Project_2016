@@ -6,6 +6,7 @@ import model.ReviewSet;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,8 @@ public class TopKWordsGenerator {
         Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
         Map<Integer, ReviewSet> reviewSetMapper = buildReviewSetMap(instanceMap);
 
+        Map<String, Integer> TermFreq = new HashMap<String, Integer>();
+        
         for (int serialID : instanceMap.keySet()) {
 
             // get the list of reviews for the 'serialID'
@@ -33,7 +36,7 @@ public class TopKWordsGenerator {
                 String reviewText = review.getText();
 
                 // ... find top 1000 / update the frequency count of words found so far
-
+                
             }
 
 
