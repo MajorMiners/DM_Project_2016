@@ -1,3 +1,25 @@
+4/23/2016:
+	Neel	- Wrote MapReduce Program to calculate reviewscore of all reviews.
+			- hadoop directory has hadoop program in it.
+			*** in hadoop/post-processing you can find allReviews.out and hygieneReviews.out
+			- allReviews: serialized hashmap of ALL reviews with review id as key and its sentiment score as values
+			- hygieneReviews: serialized hashmap of ONLY HYGIENE RELATED reviews with review id as key and its sentiment score as values
+			- you can read them through the following code
+			
+			FileInputStream fis1 = new FileInputStream("allReviews.out");
+			ObjectInputStream ois1 = new ObjectInputStream(fis1);
+			HashMap<String, Integer> allReviewsMap = (HashMap<String,Integer>) ois1.readObject();
+			System.out.println("All Reviews Size : "+allReviewsMap.size());
+			ois1.close();
+			fis1.close();
+
+			FileInputStream fis2 = new FileInputStream("hygieneReviews.out");
+			ObjectInputStream ois2 = new ObjectInputStream(fis2);
+			HashMap<String, Integer> hygieneReviewsMap = (HashMap<String,Integer>) ois2.readObject();
+			System.out.println("Hygiene Reviews Size : "+hygieneReviewsMap.size());
+			ois2.close();
+			fis2.close();
+
 
 ++ 4 / 12 
 	Issues:
