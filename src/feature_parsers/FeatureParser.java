@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 
 import parser.AllViolationParser;
 import utils.FeatureNormalizer;
+import utils.TextAnalyzer;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -103,6 +104,7 @@ public class FeatureParser {
         businessType = populateFeatureMap19();
         noiseLevel = populateFeatureMap20();
 
+        TextAnalyzer textAnalyser = new TextAnalyzer();
         textAnalysisScore = populateFeatureMap21();             // Text Analysis Score, pulled frm ReviewParser
 
         cuisine = populateFeatureMap22();

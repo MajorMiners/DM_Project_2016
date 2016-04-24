@@ -4,6 +4,7 @@ import utils.Date;
 
 public class Review {
 
+	private String reviewID;
     private String yelpID;
 
     private int userRating;
@@ -16,11 +17,20 @@ public class Review {
         // Empty Constructor
     }
 
-    public Review(String yelpID, int userRating, String dateString, String text) {
+    public Review(String reviewID,String yelpID, int userRating, String dateString, String text) {
+    	this.reviewID = reviewID;
         this.userRating = userRating;
         this.date = new Date(dateString);
         this.text = text;
         this.yelpID = yelpID;
+    }
+    
+    public String getReviewId() {
+        return reviewID;
+    }
+
+    public void setreviewID(String reviewID) {
+        this.reviewID = reviewID;
     }
 
     public int getUserRating() {
