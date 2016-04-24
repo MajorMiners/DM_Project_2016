@@ -17,76 +17,79 @@ public class TopKWordsGenerator {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-
+        System.out.println("Building Instance Map");
         Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
+        System.out.println("Building Review Set Mapper");
         Map<Integer, ReviewSet> reviewSetMapper = buildReviewSetMap(instanceMap);
-        
+
         int k = 1100;
-        Map<String, Integer> TermFreq = new HashMap<String, Integer>();
-        PriorityQueue<WordFreq> topKHeap = new PriorityQueue<WordFreq>(k);
-        
-        for (int serialID : instanceMap.keySet()) {
+        Map<String, Integer> TermFreq = new HashMap<>();
+        PriorityQueue<WordFreq> topKHeap = new PriorityQueue<>(k);
 
-            // get the list of reviews for the 'serialID'
+        int index = 0;
+        for (int serialID : reviewSetMapper.keySet()) {
+            System.out.println(index++ + " / " + reviewSetMapper.size());
+
             ReviewSet reviewSet = reviewSetMapper.get(serialID);
-
-            // get the list of reviews from
-            List<Review> reviews =  reviewSet.getReviewSet();
-
+            List<Review> reviews = reviewSet.getReviewSet();
             for (Review review : reviews) {
-
-                // get a particular review from the list of reviews
                 String reviewText = review.getText();
 
                 // ... find top 1000 / update the frequency count of words found so far
-                String[] sentence = reviewText.toLowerCase().trim().split(".");
-                for(String s : sentence){
-                	String[] words = s.toLowerCase().trim().split(" ");
-                	
-                	for (final String word : words) {
-                        int freq = 1;
-                        if (TermFreq.containsKey(word)) {
-                            freq = TermFreq.get(word) + 1;
-                        }
+                String[] words = getWordsFromSentence(reviewText);
 
-                        // update the frequency map
-                        TermFreq.put(word, freq);
+                for (final String word : words) {
+                    int freq = 1;
+                    if (TermFreq.containsKey(word)) {
+                        freq = TermFreq.get(word) + 1;
                     }
+
+                    // update the frequency map
+                    TermFreq.put(word, freq);
                 }
             }
-            
-            // Build the topK heap
-            for (final java.util.Map.Entry<String, Integer> entry : TermFreq.entrySet()) {
-                
-            	if (topKHeap.size() < k) {
-            		WordFreq wf = new WordFreq(entry.getKey(), entry.getValue());
-                    topKHeap.add(wf);
-                } else if (entry.getValue() > topKHeap.peek().freq) {
-                    topKHeap.remove();
-                    topKHeap.add(new WordFreq(entry.getKey(), entry.getValue()));
-                }
-            }
-            
-            // extract the top K
-            final String[] topK = new String[k];
-            int i = 0;
-            while (topKHeap.size() > 0) {
-                topK[i++] = topKHeap.remove().word;
-            }
-            
-            int cnt=1;
-            for(String topWord : topK){
-            	System.out.println(cnt + ") \t" + topK[cnt]);
-            	cnt++;
-            }
-
-            // return topK;
-
-
         }
 
+        // Build the topK heap
+        for (final java.util.Map.Entry<String, Integer> entry : TermFreq.entrySet()) {
 
+            if (topKHeap.size() < k) {
+                WordFreq wf = new WordFreq(entry.getKey(), entry.getValue());
+                topKHeap.add(wf);
+            } else if (entry.getValue() > topKHeap.peek().freq) {
+                topKHeap.remove();
+                topKHeap.add(new WordFreq(entry.getKey(), entry.getValue()));
+            }
+        }
 
+        // extract the top K
+        final String[] topK = new String[k+1];
+        int i = 0;
+        while (topKHeap.size() > 0) {
+            topK[i++] = topKHeap.remove().word;
+        }
+
+        for (String topWord : topK) {
+            System.out.println(topWord);
+        }
+
+        // return topK;
+
+    }
+
+    public static String[] getWordsFromSentence(String str) {
+
+        str = str.replaceAll("['!?,\\.]", "");
+        String[] words = str.split("\\s+");
+
+        String[] lowerCaseWords = new String[words.length];
+
+        int index = 0;
+        for (String word : words) {
+            lowerCaseWords[index++] = word.toLowerCase();
+        }
+
+        return lowerCaseWords;
     }
 
     public static class WordFreq implements Comparable<WordFreq> {
@@ -103,6 +106,4 @@ public class TopKWordsGenerator {
             return Integer.compare(this.freq, other.freq);
         }
     }
-
-
 }

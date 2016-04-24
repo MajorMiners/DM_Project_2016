@@ -50,6 +50,14 @@ public class ViolationEntry {
         return penaltyScore;
     }
 
+    public static double calculateSimplePenaltyScore(ViolationEntry entry) {
+        double penaltyScore = 0d;
+
+        penaltyScore = entry.minorViolationCount + entry.majorViolationCount + entry.severeViolationCount;
+        return penaltyScore;
+    }
+
+
     @Override
     public String toString() {
         String comma = ",";
