@@ -17,19 +17,19 @@ public class TextAnalyzer {
 
     public static double scoreReviewText(String reviewText, HashSet<String> dict) {
     	String newReview = hygieneComment(reviewText,dict);
-    	
-        if(newReview.equals("")) {
+    	if(newReview.equals("")) {
             return baseScore;
         } else {
         	return scoreHygienceRelatedText(newReview);
         }
+        
     }
 
     private static double scoreHygienceRelatedText(String reviewText) {
         return NLP.findSentiment(reviewText);
     }
 
-    private static String hygieneComment(String reviewText, HashSet<String> dict) {
+    public static String hygieneComment(String reviewText, HashSet<String> dict) {
     	
     	englishStemmer stemmer = new englishStemmer();
     	String[] sentences = reviewText.split("\\. ");
@@ -50,5 +50,15 @@ public class TextAnalyzer {
         }
     	
     	return newReview;     // turn off NLP
+    }
+    
+    public static boolean isHygieneRelated(String reviewText, HashSet<String> dict){
+    	for(String dictWord: dict){
+    		if(reviewText.contains(dictWord)){
+    			
+    			return true;
+    		}
+    	}
+    	return false;
     }
 }

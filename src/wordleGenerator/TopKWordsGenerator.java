@@ -5,6 +5,9 @@ import model.Review;
 import model.ReviewSet;
 import org.json.simple.parser.ParseException;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +46,7 @@ public class TopKWordsGenerator {
                 for(String s : sentence){
                 	String[] words = s.toLowerCase().trim().split(" ");
                 	
-                	for (final String word : words) {
+                	for (String word : words) {
                         int freq = 1;
                         if (TermFreq.containsKey(word)) {
                             freq = TermFreq.get(word) + 1;
@@ -56,7 +59,7 @@ public class TopKWordsGenerator {
             }
             
             // Build the topK heap
-            for (final java.util.Map.Entry<String, Integer> entry : TermFreq.entrySet()) {
+            for (java.util.Map.Entry<String, Integer> entry : TermFreq.entrySet()) {
                 
             	if (topKHeap.size() < k) {
             		WordFreq wf = new WordFreq(entry.getKey(), entry.getValue());
@@ -68,17 +71,34 @@ public class TopKWordsGenerator {
             }
             
             // extract the top K
-            final String[] topK = new String[k];
+            String[] topK = new String[k];
             int i = 0;
             while (topKHeap.size() > 0) {
                 topK[i++] = topKHeap.remove().word;
             }
             
-            int cnt=1;
-            for(String topWord : topK){
-            	System.out.println(cnt + ") \t" + topK[cnt]);
-            	cnt++;
+            try{
+            	File attributes = new File("data\topKAttr.arff");
+                BufferedWriter writer = new BufferedWriter(new FileWriter(attributes));
+                
+                writer.write("@RELATION topKAttributes");
+                writer.write("\n");
+                
+                int cnt=1;
+                for(String topWord : topK){
+                	System.out.println(cnt + ") \t" + topWord);
+                	writer.write("@ATTRIBUTE " + topWord + " "+ "STRING\n");
+                	cnt++;
+                }
+                writer.write("@DATA");
+                writer.close();
+                
             }
+            catch(Exception e){
+            	
+            }
+            
+            
 
             // return topK;
 
@@ -93,13 +113,13 @@ public class TopKWordsGenerator {
         String word;
         int freq;
 
-        public WordFreq(final String w, final int c) {
+        public WordFreq(String w, int c) {
             word = w;
             freq = c;
         }
 
         @Override
-        public int compareTo(final WordFreq other) {
+        public int compareTo(WordFreq other) {
             return Integer.compare(this.freq, other.freq);
         }
     }

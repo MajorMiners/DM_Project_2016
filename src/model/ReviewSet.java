@@ -46,12 +46,14 @@ public class ReviewSet {
     	HashSet<String> dict = hygieneIdf.getDict();
     	double total =0.0;
     	TextAnalyzer textAnalyser = new TextAnalyzer();
-        for (Review review : reviewSet) {
+        
+    	for (Review review : reviewSet) {
 
             String reviewText = review.getText();
             int reviewResponseCount = review.getReviewResponseCount();
-
+            
             total += textAnalyser.scoreReviewText(reviewText,dict);
+            
         }
 
         // take average of all reviews
