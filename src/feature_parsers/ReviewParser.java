@@ -115,6 +115,7 @@ public class ReviewParser {
         // get businessID
         JSONObject jsonStringObject = (JSONObject) obj;
 
+        String reviewID = JSONParserUtil.getReviewID(jsonStringObject);
         String businessID = JSONParserUtil.getBusinessID(jsonStringObject);
         int userRating = JSONParserUtil.parseUserRating(jsonStringObject);
         Date date = JSONParserUtil.parseDate(jsonStringObject);
@@ -122,6 +123,7 @@ public class ReviewParser {
         int reviewResponse = JSONParserUtil.parseReviewResponse(jsonStringObject);
 
         Review reviewEntry = new Review();
+        reviewEntry.setreviewID(reviewID);
         reviewEntry.setDate(date);
         reviewEntry.setText(reviewText);
         reviewEntry.setUserRating(userRating);

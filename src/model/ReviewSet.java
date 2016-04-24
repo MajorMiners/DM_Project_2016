@@ -42,17 +42,16 @@ public class ReviewSet {
     private static double getTextAnalysisScore(List<Review> reviewSet) {
     	
     	HygieneIdentifier hygieneIdf = new HygieneIdentifier();
-    	hygieneIdf.readHygieneDictionary();
-    	HashSet<String> dict = hygieneIdf.getDict();
+    	//hygieneIdf.readHygieneDictionary();
+    	//HashSet<String> dict = hygieneIdf.getDict();
     	double total =0.0;
-    	TextAnalyzer textAnalyser = new TextAnalyzer();
         
     	for (Review review : reviewSet) {
-
+    		
             String reviewText = review.getText();
             int reviewResponseCount = review.getReviewResponseCount();
             
-            total += textAnalyser.scoreReviewText(reviewText,dict);
+            total += TextAnalyzer.scoreReviewText(review);
             
         }
 

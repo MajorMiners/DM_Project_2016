@@ -2,6 +2,7 @@ package linearregression;/* Authored by Kushagra on 4/11/2016. */
 
 import feature_parsers.FeatureParser;
 import model.ViolationEntry;
+import utils.TextAnalyzer;
 
 import org.json.simple.parser.ParseException;
 
@@ -20,8 +21,9 @@ import java.util.Set;
 public class RegressionDemo {
 
     public static void main(String[] args) throws IOException, ParseException {
-
+    	TextAnalyzer textAnalyser = new TextAnalyzer();
         FeatureParser featureParser = new FeatureParser();
+        
         
         Attribute featureAverageLength_attr = new Attribute("featureAverageLength");
 		Attribute featureAverageRating_attr = new Attribute("featureAverageRating");
@@ -111,6 +113,8 @@ public class RegressionDemo {
         
         int counter = 0;
         for (int serialID : instances) {
+        	
+        	System.out.println("Serial ID: "+serialID );
         	
             // Target Variables Y
             double Y = featureParser.getTargetVariable(serialID);

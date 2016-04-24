@@ -30,6 +30,11 @@ public class JSONParserUtil {
     public static String getBusinessID(JSONObject jsonStringObject) {
         return (String) jsonStringObject.get("business_id");
     }
+    
+    public static String getReviewID(JSONObject jsonStringObject) {
+        return (String) jsonStringObject.get("review_id");
+    }
+    
 
     public static int parseReviewResponse(JSONObject jsonStringObject) {
         int funnyCount = parseVoteTypes(jsonStringObject, "funny");
