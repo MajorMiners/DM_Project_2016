@@ -25,7 +25,7 @@ public class ReviewSet {
         reviewSet.setAverageRating(getAverageRating(reviewSet.getReviewSet()));
         reviewSet.setReviewCount(getReviewCount(reviewSet.getReviewSet()));
         reviewSet.setReviewResponse(getReviewResponseCount(reviewSet.getReviewSet()));
-//        reviewSet.setTextAnalysisScore(getTextAnalysisScore(reviewSet.getReviewSet()));
+        reviewSet.setTextAnalysisScore(getTextAnalysisScore(reviewSet.getReviewSet()));
     }
 
     // TODO: method that text analysis

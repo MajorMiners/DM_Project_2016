@@ -23,7 +23,9 @@ public class TopKWordFeatureList {
 
 //        Map<Integer, Map<String, Integer>> featureListMap = getTextFeatureListMap(reviewSetMapper);
 
-}
+
+
+    }
 
     public static Map<Integer, Map<String, Integer>> getTextFeatureListMap(Map<Integer, ReviewSet> reviewSetMapper) throws IOException, ParseException {
 

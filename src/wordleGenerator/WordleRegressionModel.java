@@ -53,8 +53,9 @@ public class WordleRegressionModel {
         testData.setClassIndex(cIdx);
 
         System.out.println("Creating Instances.. ");
+        int index = 1;
         for (int serialID : reviewSetMapper.keySet()) {
-
+            System.out.println(index++ + " / " + reviewSetMapper.size());
             // Feature Vector
             Map<String, Integer> wordFeatures = featureListMap.get(serialID);
 
@@ -72,13 +73,25 @@ public class WordleRegressionModel {
             testData.add(inst);
         }
 
+
+        // clean memory
+        System.out.println("Cleaning Heap Memory");
+        instanceMap.clear();
+        reviewSetMapper.clear();
+        targetVariable.clear();
+        featureListMap.clear();
+
+        // end of memory clean
+
+
         System.out.println("Linear Regression.. ");
         LinearRegression lrModel = new LinearRegression();
         try {
 
             lrModel.setRidge(3450);
             System.out.println("Linear Regression.. Building Classifier");
-            lrModel.buildClassifier(trainData);
+            lrModel.buildClassifier(testData);
+            System.out.println("Linear Regression.. Classifier Ready");
 
             double[] topWordCoeff = lrModel.coefficients();
             postProcessWords(topWordCoeff, topKWords);
@@ -133,5 +146,4 @@ public class WordleRegressionModel {
         topwordFeatures[wordIndex] = new Attribute("featureTarget");
         return topwordFeatures;
     }
-
 }
