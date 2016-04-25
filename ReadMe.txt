@@ -1,3 +1,8 @@
+4/25/2016:
+	Isha - WordleRegression takes a lot of time to run. Its output is stored in TopKAttributes file. Run the main method to see the coefficient of each word. 
+	Issues: The word list size is 1002 and coefficient array size is 1004. There are 2 extra coefficients!
+		
+
 4/23/2016:
 	Neel	- Wrote MapReduce Program to calculate reviewscore of all reviews.
 			- hadoop directory has hadoop program in it.
