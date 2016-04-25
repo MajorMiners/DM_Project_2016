@@ -1,6 +1,5 @@
 package wordleGenerator;/* Authored by Kushagra on 4/23/2016. */
 
-import feature_parsers.FeatureInstance;
 import model.Review;
 import model.ReviewSet;
 import org.json.simple.parser.ParseException;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static feature_parsers.ReviewParser.buildReviewSetMap;
 import static wordleGenerator.TopKWordsGenerator.getWordsFromSentence;
 
 @SuppressWarnings("Duplicates")
@@ -23,18 +21,16 @@ public class TopKWordFeatureList {
     public static void main(String[] args) throws IOException, ParseException {
 
 
-        Map<Integer, Map<String, Integer>> featureListMap = getTextFeatureListMap();
+//        Map<Integer, Map<String, Integer>> featureListMap = getTextFeatureListMap(reviewSetMapper);
 
+}
 
-
-    }
-
-    public static Map<Integer, Map<String, Integer>> getTextFeatureListMap() throws IOException, ParseException {
+    public static Map<Integer, Map<String, Integer>> getTextFeatureListMap(Map<Integer, ReviewSet> reviewSetMapper) throws IOException, ParseException {
 
         Map<Integer, Map<String, Integer>> featureListMap = new HashMap<>();
 
-        Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
-        Map<Integer, ReviewSet> reviewSetMapper = buildReviewSetMap(instanceMap);
+//        Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
+//        Map<Integer, ReviewSet> reviewSetMapper = buildReviewSetMap(instanceMap);
 
         String[] topKWords = getTopKWords();
 

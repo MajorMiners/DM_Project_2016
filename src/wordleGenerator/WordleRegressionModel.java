@@ -35,8 +35,9 @@ public class WordleRegressionModel {
 
         String[] topKWords = getTopKWords();
         System.out.println("Building Feature List Mapper");
-        Map<Integer, Map<String, Integer>> featureListMap = getTextFeatureListMap();        // TODO
+        Map<Integer, Map<String, Integer>> featureListMap = getTextFeatureListMap(reviewSetMapper);        // TODO
 
+        System.out.println("Building Feature List Mapper.. complete");
 
         /* ============================================== */
 
@@ -51,6 +52,7 @@ public class WordleRegressionModel {
         cIdx = testData.numAttributes() - 1;
         testData.setClassIndex(cIdx);
 
+        System.out.println("Creating Instances.. ");
         for (int serialID : reviewSetMapper.keySet()) {
 
             // Feature Vector
@@ -70,10 +72,12 @@ public class WordleRegressionModel {
             testData.add(inst);
         }
 
+        System.out.println("Linear Regression.. ");
         LinearRegression lrModel = new LinearRegression();
         try {
 
             lrModel.setRidge(3450);
+            System.out.println("Linear Regression.. Building Classifier");
             lrModel.buildClassifier(trainData);
 
             double[] topWordCoeff = lrModel.coefficients();

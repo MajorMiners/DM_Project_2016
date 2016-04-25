@@ -65,7 +65,7 @@ public class ReviewParser {
 
         for (int serialID : map.keySet()) {
             ReviewSet rs = map.get(serialID);
-            ReviewSet.FillEntriesInReviewSet(rs);
+//            ReviewSet.FillEntriesInReviewSet(rs);
         }
     }
 

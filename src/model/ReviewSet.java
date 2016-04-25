@@ -1,12 +1,10 @@
 package model;/* Authored by Kushagra on 4/10/2016. */
 
+import preprocessing.HygieneIdentifier;
 import utils.TextAnalyzer;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-
-import preprocessing.HygieneIdentifier;
 
 public class ReviewSet {
 
@@ -27,7 +25,7 @@ public class ReviewSet {
         reviewSet.setAverageRating(getAverageRating(reviewSet.getReviewSet()));
         reviewSet.setReviewCount(getReviewCount(reviewSet.getReviewSet()));
         reviewSet.setReviewResponse(getReviewResponseCount(reviewSet.getReviewSet()));
-        reviewSet.setTextAnalysisScore(getTextAnalysisScore(reviewSet.getReviewSet()));
+//        reviewSet.setTextAnalysisScore(getTextAnalysisScore(reviewSet.getReviewSet()));
     }
 
     // TODO: method that text analysis
