@@ -14,18 +14,17 @@ public class ReviewSet {
     private int reviewCount;
     private int reviewResponse;
     private double textAnalysisScore;
-
-
+   
     public ReviewSet() {
         this.reviewSet = new ArrayList<>();
     }
 
-    public static void FillEntriesInReviewSet(ReviewSet reviewSet) {
+    public static void FillEntriesInReviewSet(ReviewSet reviewSet, TextAnalyzer textAnalyser) {
         reviewSet.setAverageLength(getAverageLengthFromSet(reviewSet.getReviewSet()));
         reviewSet.setAverageRating(getAverageRating(reviewSet.getReviewSet()));
         reviewSet.setReviewCount(getReviewCount(reviewSet.getReviewSet()));
         reviewSet.setReviewResponse(getReviewResponseCount(reviewSet.getReviewSet()));
-        reviewSet.setTextAnalysisScore(getTextAnalysisScore(reviewSet.getReviewSet()));
+        reviewSet.setTextAnalysisScore(getTextAnalysisScore(reviewSet.getReviewSet(), textAnalyser));
     }
 
     // TODO: method that text analysis
@@ -37,19 +36,17 @@ public class ReviewSet {
          3. score's boosting considering the kind of votes that review got
          4. More..
       */
-    private static double getTextAnalysisScore(List<Review> reviewSet) {
+    private static double getTextAnalysisScore(List<Review> reviewSet, TextAnalyzer textAnalyser) {
     	
     	HygieneIdentifier hygieneIdf = new HygieneIdentifier();
     	//hygieneIdf.readHygieneDictionary();
     	//HashSet<String> dict = hygieneIdf.getDict();
     	double total =0.0;
-        
     	for (Review review : reviewSet) {
     		
             String reviewText = review.getText();
             int reviewResponseCount = review.getReviewResponseCount();
-            
-            total += TextAnalyzer.scoreReviewText(review);
+            total += textAnalyser.scoreReviewText(review);
             
         }
 

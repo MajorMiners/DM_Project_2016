@@ -8,7 +8,7 @@ import org.json.simple.parser.ParseException;
 import utils.Date;
 import utils.FileIO;
 import utils.JSONParserUtil;
-
+import utils.TextAnalyzer;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -56,16 +56,16 @@ public class ReviewParser {
         }
 
         br.close();
-
-        PopulateEntriesInMap(map);
+        TextAnalyzer textAnalyser = new TextAnalyzer();
+        PopulateEntriesInMap(map, textAnalyser);
         return map;
     }
 
-    private static void PopulateEntriesInMap(Map<Integer, ReviewSet> map) {
+    private static void PopulateEntriesInMap(Map<Integer, ReviewSet> map, TextAnalyzer textAnalyser) {
 
         for (int serialID : map.keySet()) {
             ReviewSet rs = map.get(serialID);
-            ReviewSet.FillEntriesInReviewSet(rs);
+            ReviewSet.FillEntriesInReviewSet(rs, textAnalyser);
         }
     }
 

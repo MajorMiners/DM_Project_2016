@@ -21,7 +21,7 @@ import java.util.Set;
 public class RegressionDemo {
 
     public static void main(String[] args) throws IOException, ParseException {
-    	TextAnalyzer textAnalyser = new TextAnalyzer();
+    	//TextAnalyzer textAnalyser = new TextAnalyzer();
         FeatureParser featureParser = new FeatureParser();
         
         
@@ -47,9 +47,6 @@ public class RegressionDemo {
 		Attribute featureCuisineType_attr = new Attribute("featureCuisineType");
 		Attribute sentiments_attr = new Attribute("sentiments");
 		Attribute feature_attr = new Attribute("featureTarget");
-		Attribute featureViolation1 = new Attribute("featureViolation1");
-		Attribute featureViolation2 = new Attribute("featureViolation2");
-		Attribute featureViolation3 = new Attribute("featureViolation3");
 		
 		
 		ArrayList attrList = new ArrayList<Attribute>();
@@ -114,8 +111,6 @@ public class RegressionDemo {
         int counter = 0;
         for (int serialID : instances) {
         	
-        	System.out.println("Serial ID: "+serialID );
-        	
             // Target Variables Y
             double Y = featureParser.getTargetVariable(serialID);
             ViolationEntry violationEntry = featureParser.getTargetVariables(serialID);
@@ -149,11 +144,10 @@ public class RegressionDemo {
             double x19 = featureParser.getEnumFeaturebusinessType(serialID);
             double x20 = featureParser.getEnumFeatureNoiseLevel(serialID);
             double x21 = featureParser.getEnumFeatureCusineType(serialID);
-            double x22 = featureParser.getTextAnalysisScore(serialID);      // fake score of 2, for now
-
+            double x22 = featureParser.getTextAnalysisScore(serialID);    // fake score of 2, for now
             // TODO: More features to add here.
             Instance inst;
-			inst = new DenseInstance(22);
+			inst = new DenseInstance(21);
             
             inst.setValue(featureAverageLength_attr, x1);
             inst.setValue(featureAverageRating_attr, x2);
@@ -202,7 +196,7 @@ public class RegressionDemo {
         LinearRegression lrModel = new LinearRegression();
         
         try {
-        	  lrModel.setRidge(0.68);
+        	  lrModel.setRidge(3450);
 			  lrModel.buildClassifier(trainData);
 			  
 			  Evaluation eval = new Evaluation(trainData);

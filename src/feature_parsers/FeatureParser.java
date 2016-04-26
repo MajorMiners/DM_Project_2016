@@ -103,13 +103,13 @@ public class FeatureParser {
 
         businessType = populateFeatureMap19();
         noiseLevel = populateFeatureMap20();
-
-        TextAnalyzer textAnalyser = new TextAnalyzer();
-        textAnalysisScore = populateFeatureMap21();             // Text Analysis Score, pulled frm ReviewParser
+          
 
         cuisine = populateFeatureMap22();
         targetVariable = populateTargetVariable();
         targetVariables = populateTargetVariables();
+        textAnalysisScore = populateFeatureMap21();  // Text Analysis Score, pulled frm ReviewParser
+  
     }
     
     
@@ -129,7 +129,7 @@ public class FeatureParser {
      
 
     private Map<Integer, Double> populateFeatureMap21() {
-        Map<Integer, Double> map = new HashMap<>();
+        Map<Integer, Double> map = new HashMap<Integer, Double>();
 
         for (int sampleID : reviewSetMapper.keySet()) {
 
@@ -737,8 +737,9 @@ public class FeatureParser {
     }
 
     // TODO: faking results, for now
-    public double getTextAnalysisScore(double serialID) {
-        return textAnalysisScore.get(serialID);
+    public double getTextAnalysisScore(Integer serialID) {
+    		return textAnalysisScore.get(serialID);
+   
     }
 
     public Map<Integer, Double> getTextAnalysisScore() {
