@@ -5,6 +5,7 @@ import feature_parsers.FeatureParser;
 import org.json.simple.parser.ParseException;
 
 import weka.classifiers.Evaluation;
+import weka.classifiers.bayes.NaiveBayes;
 import weka.classifiers.functions.LinearRegression;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Attribute;
@@ -19,11 +20,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-public class RandomForestDemo {
+public class NaiveBayesClassifier {
 
     public static void main(String[] args) throws IOException, ParseException {
-
-        FeatureParser featureParser = new FeatureParser();
+FeatureParser featureParser = new FeatureParser();
         
         ArrayList<String> hygenic = new ArrayList<String>();
         hygenic.add("0");
@@ -52,24 +52,24 @@ public class RandomForestDemo {
 		Attribute feature_attr = new Attribute("featureTarget", hygenic);
 		
 		ArrayList attrList = new ArrayList<Attribute>();
-		/*attrList.add(featureAverageLength_attr);
-		attrList.add(featureAverageRating_attr);
-		attrList.add(featureAverageReviewCount_attr);
+		//attrList.add(featureAverageLength_attr);
+		//attrList.add(featureAverageRating_attr);
+		//attrList.add(featureAverageReviewCount_attr);
 		attrList.add(featurePenaltyScore_attr);
-		attrList.add(featureReviewResponse_attr);
-		attrList.add(featureIsAlcoholic_attr);*/
+		//attrList.add(featureReviewResponse_attr);
+		attrList.add(featureIsAlcoholic_attr);
 		attrList.add(featureisWaiterService_attr);
-		/*attrList.add(featureisValetParking_attr);
-		attrList.add(featureisRomantic_attr);
-		attrList.add(featureisIntimate_attr);
-		attrList.add(featureisTouristy_attr);
-		attrList.add(featureisHipster_attr);
-		attrList.add(featureisUpscale_attr);
-		attrList.add(featureisDeliveryAvailable_attr);
-		attrList.add(featureisGoodForDessert_attr);
-		attrList.add(featureisLatenight_attr);
-		attrList.add(featurePriceRange_attr);
-		attrList.add(featureNoiseLevel_attr);*/
+		//attrList.add(featureisValetParking_attr);
+		//attrList.add(featureisRomantic_attr);
+		//attrList.add(featureisIntimate_attr);
+		//attrList.add(featureisTouristy_attr);
+		//attrList.add(featureisHipster_attr);
+		//attrList.add(featureisUpscale_attr);
+		//attrList.add(featureisDeliveryAvailable_attr);
+		//attrList.add(featureisGoodForDessert_attr);
+		//attrList.add(featureisLatenight_attr);
+		//attrList.add(featurePriceRange_attr);
+		attrList.add(featureNoiseLevel_attr);
 		attrList.add(sentiments_attr);
 		attrList.add(feature_attr);
 		
@@ -125,14 +125,14 @@ public class RandomForestDemo {
 
             // TODO: More features to add here.
             Instance inst;
-			inst = new DenseInstance(3);
+			inst = new DenseInstance(6);
             
-            /*inst.setValue(featureAverageLength_attr, x1);
-            inst.setValue(featureAverageRating_attr, x2);
-            inst.setValue(featureAverageReviewCount_attr, x3);
+            //inst.setValue(featureAverageLength_attr, x1);
+            //inst.setValue(featureAverageRating_attr, x2);
+            //inst.setValue(featureAverageReviewCount_attr, x3);
             inst.setValue(featurePenaltyScore_attr, x4);
-            inst.setValue(featureReviewResponse_attr, x5);
-            inst.setValue(featureIsAlcoholic_attr, x6);*/
+            //inst.setValue(featureReviewResponse_attr, x5);
+            inst.setValue(featureIsAlcoholic_attr, x6);
             inst.setValue(featureisWaiterService_attr, x7);
             /*inst.setValue(featureisValetParking_attr, x8);
             inst.setValue(featureisRomantic_attr, x9);
@@ -143,8 +143,8 @@ public class RandomForestDemo {
             inst.setValue(featureisDeliveryAvailable_attr, x14);
             inst.setValue(featureisGoodForDessert_attr, x15);
             inst.setValue(featureisLatenight_attr, x16);
-            inst.setValue(featurePriceRange_attr, x17);
-            inst.setValue(featureNoiseLevel_attr, x20);*/
+            inst.setValue(featurePriceRange_attr, x17);*/
+            inst.setValue(featureNoiseLevel_attr, x20);
             inst.setValue(sentiments_attr, x21);
             if(Y >= 8)
             inst.setValue(feature_attr, 1);
@@ -214,7 +214,7 @@ public class RandomForestDemo {
 */
         
         
-        RandomForest rf = new RandomForest();
+        NaiveBayes rf = new NaiveBayes();
         
         try {
         	  rf.buildClassifier(trainData);
@@ -229,5 +229,6 @@ public class RandomForestDemo {
 		}
         
   
-    }
+
+     }
 }

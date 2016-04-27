@@ -43,8 +43,13 @@ public class ViolationEntry {
 
     public double calculatePenaltyScore(ViolationEntry entry) {
         double penaltyScore = 0d;
-        penaltyScore = entry.minorViolationCount + (100 * entry.majorViolationCount) +
-                (1000 * entry.severeViolationCount);
+        double v1Norm = (double)entry.minorViolationCount/(entry.minorViolationCount+entry.majorViolationCount +
+        		entry.severeViolationCount );
+        double v2Norm = 2 * (double)entry.majorViolationCount/(entry.minorViolationCount+entry.majorViolationCount +
+        		entry.severeViolationCount );
+        double v3Norm = 3 * (double)entry.severeViolationCount/(entry.minorViolationCount+entry.majorViolationCount +
+        		entry.severeViolationCount );
+        penaltyScore = v1Norm + v2Norm + v3Norm;
 
 //        penaltyScore = entry.minorViolationCount + entry.majorViolationCount + entry.severeViolationCount;
         return penaltyScore;

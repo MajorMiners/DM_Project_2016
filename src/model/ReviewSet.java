@@ -38,20 +38,21 @@ public class ReviewSet {
       */
     private static double getTextAnalysisScore(List<Review> reviewSet, TextAnalyzer textAnalyser) {
     	
-    	HygieneIdentifier hygieneIdf = new HygieneIdentifier();
-    	//hygieneIdf.readHygieneDictionary();
-    	//HashSet<String> dict = hygieneIdf.getDict();
     	double total =0.0;
+    	int count=0;
     	for (Review review : reviewSet) {
     		
-            String reviewText = review.getText();
-            int reviewResponseCount = review.getReviewResponseCount();
-            total += textAnalyser.scoreReviewText(review);
+            double tempScore = textAnalyser.scoreReviewText(review);
+            if(tempScore != -10.0){
+            	count++;
+            	total += tempScore;
+            }
+             
             
         }
 
         // take average of all reviews
-        double avg = total/reviewSet.size();
+        double avg = total/count;
         // faking results for now
         return avg;
     }
