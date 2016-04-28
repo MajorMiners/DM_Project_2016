@@ -1,13 +1,3 @@
-============================================================ Read Me ==================================================================================
-
-Project Build:
-1. Open the source code in an IDE.
-2. Configure the program to a Maven Configuration
-3. The pom.xml is provided with the source code which should automatically build the dependencies into the project.
-
-Run Hadoop Program:
-
-
 
 Data:
 The data is available on the following link: https://drive.google.com/open?id=0B_LGUXrleYirYkJRc29pLTg0OTQ
@@ -28,6 +18,21 @@ yelp_academic_dataset_review.json: The data provided by yelp for all the reviews
 
 yelp_academic_dataset_business.json: The data provided by yelp about businesses.
 
+
+
+Hadoop Program:
+1. Software required : Gradle
+2. Build jar file by running "gradle build" on terminal in the directory "hadoop".
+3. Put yelp_academic_dataset_review.json in S3. Run the jar on AWS EMR.
+4. The output of this program is downloaded in hadoop/postprocessing/output.
+5. run Main.java in hadoop/postprocessing to get allReviews.out which needs to be placed in data directory to execution of rest of the program.
+
+
+Project Build:
+1. Open the source code in an IDE.
+2. Configure the program to a Maven Configuration
+3. The pom.xml is provided with the source code which should automatically build the dependencies into the project.
+4. run "mvn clean install" in terminal for building the project.
 
 Running the code: 
 

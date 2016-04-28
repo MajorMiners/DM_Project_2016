@@ -11,7 +11,7 @@ public class Main {
 		int count = 0;
 		int hcount= 0;
 		try {
-			File dataDir = new File("data");
+			File dataDir = new File("output");
 			File[] listOfFiles = dataDir.listFiles();
 			for(int i=0; i<listOfFiles.length; i++){
 				System.out.print(i+"\t");
