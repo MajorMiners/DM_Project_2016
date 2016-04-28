@@ -1,4 +1,4 @@
-package feature_parsers;/* Authored by Kushagra on 4/11/2016. */
+package feature_parsers;
 
 import model.AllViolationData;
 import model.BusinessSet;

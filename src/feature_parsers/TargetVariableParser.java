@@ -1,4 +1,4 @@
-package feature_parsers;/* Authored by Kushagra on 4/10/2016. */
+package feature_parsers;
 
 /*
 Input: penalty_score_formula
@@ -17,22 +17,12 @@ import java.util.Map;
 
 public class TargetVariableParser {
 
-    /**
-     * For testing purposes, main method can be deleted later
-     **/
-    public static void main(String[] args) throws IOException {
-
-        //printMap(getMap_TargetVariable(1, 1, 1));
-    	printViolationMap();
-    }
-
     public static void printMap(Map<Integer, Double> map) {
 
         for (int serialID : map.keySet()) {
 
             double score = map.get(serialID);
 
-            //System.out.println(serialID + "\t: " + score);
         }
     }
     

@@ -1,4 +1,4 @@
-package parser;/* Authored by Kushagra on 3/28/2016. */
+package parser;
 
 import model.AllViolationData;
 
@@ -10,14 +10,6 @@ import java.util.List;
 
 public class AllViolationParser {
 
-    public static void main(String[] args) throws IOException {
-
-//        readViolationData().forEach(System.out::println);
-    }
-
-    /**
-     * Author: Kushagra, Joy on 04/02/2016
-     */
     public static List<AllViolationData> readViolationData()
             throws IOException {
 
@@ -45,8 +37,6 @@ public class AllViolationParser {
     private static AllViolationData getAllViolationData(String line) {
 
         String[] tokens = line.split(",");
-        int tokenCount = tokens.length;
-
         AllViolationData data = new AllViolationData();
 
         data.setSerialID(Integer.parseInt(tokens[0]));

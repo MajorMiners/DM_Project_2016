@@ -28,7 +28,7 @@ public class J48ClassifierHygieneRelated {
 	Attribute sentiments_attr = new Attribute("sentiments");
 	Attribute feature_attr = new Attribute("featureTarget", hygenic);
 
-	ArrayList attrList = new ArrayList<Attribute>();
+	ArrayList<Attribute> attrList = new ArrayList<Attribute>();
 
 	attrList.add(sentiments_attr);
 	attrList.add(feature_attr);
@@ -58,7 +58,6 @@ public class J48ClassifierHygieneRelated {
 
 	try {
 		rf.buildClassifier(trainData);
-		int accuracyCounter = 0;
 
 		Evaluation eval = new Evaluation(trainData);
 		Random rand = new Random(1);

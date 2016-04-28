@@ -1,6 +1,5 @@
 package preprocessing;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -31,10 +30,10 @@ public class HygenieRelationClassifier {
 		hygieneRelated.add("1");
 		hygieneRelated.add("0");
         
-		Attribute reviewAttr = new Attribute("featureReviewText", (ArrayList) null);
+		Attribute reviewAttr = new Attribute("featureReviewText", (ArrayList<String>) null);
 		Attribute classAttr = new Attribute("featureClassAttribute", hygieneRelated);
 		
-		ArrayList attrList = new ArrayList<Attribute>();
+		ArrayList<Attribute> attrList = new ArrayList<Attribute>();
 		attrList.add(reviewAttr);
 		attrList.add(classAttr);
 		

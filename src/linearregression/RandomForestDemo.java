@@ -1,4 +1,4 @@
-package linearregression;/* Authored by Kushagra on 4/11/2016. */
+package linearregression;
 
 import feature_parsers.FeatureParser;
 
@@ -217,14 +217,14 @@ public class RandomForestDemo {
         RandomForest rf = new RandomForest();
         
         try {
-        	  rf.buildClassifier(trainData);
-			  int accuracyCounter = 0;
+        	rf.buildClassifier(trainData);
+			int accuracyCounter = 0;
 			  
-			  Evaluation eval = new Evaluation(trainData);
-			  Random rand = new Random(1);
-			  eval.crossValidateModel(rf,trainData,5, rand);
-			  System.out.println("Summary: "+eval.toSummaryString()); 
-			} catch (Exception e) {
+			Evaluation eval = new Evaluation(trainData);
+			Random rand = new Random(1);
+			eval.crossValidateModel(rf,trainData,5, rand);
+			System.out.println("Summary: "+eval.toSummaryString()); 
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
         

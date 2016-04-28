@@ -9,28 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Author: Joy and Isha
- */
 public class ReviewParser {
 
     private static String filePath = "data/yelp_academic_dataset_review.csv";
-
-    public static void main(String args[]) {
-
-    }
 
     public static List<ReviewData> readReviews() {
         List<ReviewData> list = new ArrayList<ReviewData>();
         try {
             CsvReader reviews = new CsvReader(filePath);
             reviews.readHeaders();
-            RestaurantToYelpIdParser yelpToRestaurentParser = new RestaurantToYelpIdParser();
-
             // Caching results for restaurantID - YelpID mappings
             Map map = RestaurantToYelpIdParser.BusinessToYelpIDMapper();
 
-            int index = 1;
             while (reviews.readRecord()) {
                 String userId = reviews.get("user_id");
                 String reviewId = reviews.get("review_id");

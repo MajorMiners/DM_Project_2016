@@ -1,4 +1,4 @@
-package feature_parsers;/* Authored by Kushagra on 4/11/2016. */
+package feature_parsers;
 
 import model.AllViolationData;
 import parser.AllViolationParser;
@@ -10,14 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public class PastPenaltyParser {
-
-    public static void main(String[] args) throws IOException {
-
-        List<AllViolationData> entries = AllViolationParser.readViolationData();
-        Map<Integer, Double> map_serialID_pastViolation = buildPastViolationsMap(entries);
-
-        //System.out.println(map_serialID_pastViolation.toString());
-    }
 
     public static Map<Integer, Double> buildPastViolationsMap(List<AllViolationData> entries) {
         Map<Integer, Double> map = new HashMap<>();

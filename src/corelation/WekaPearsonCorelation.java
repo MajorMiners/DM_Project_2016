@@ -1,10 +1,7 @@
 package corelation;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
-
-import org.json.simple.parser.ParseException;
 
 import weka.attributeSelection.CorrelationAttributeEval;
 import weka.core.Attribute;
@@ -36,12 +33,11 @@ public class WekaPearsonCorelation {
 			Attribute featureisGoodForDessert_attr = new Attribute("featureisGoodForDessert");
 			Attribute featureisLatenight_attr = new Attribute("featureisLatenight");
 			Attribute featurePriceRange_attr = new Attribute("featurePriceRange");
-			Attribute featureIsBusinessStars_attr = new Attribute("featureIsBusinessStars");
 			Attribute featureNoiseLevel_attr = new Attribute("featureNoiseLevel");
 			//Attribute sentiments_attr = new Attribute("sentiments");
 			Attribute feature_attr = new Attribute("featureTarget");
 			
-			ArrayList attrList = new ArrayList<Attribute>();
+			ArrayList<Attribute> attrList = new ArrayList<Attribute>();
 			attrList.add(featureAverageLength_attr);
 			attrList.add(featureAverageRating_attr);
 			attrList.add(featureAverageReviewCount_attr);
@@ -92,13 +88,9 @@ public class WekaPearsonCorelation {
 	            double x15 = featureParser.getFeatureisGoodForDessert(serialID);
 	            double x16 = featureParser.getFeatureisLatenight(serialID);
 	            double x17 = featureParser.getEnumFeaturePriceRange(serialID);
-	            double x18 = featureParser.getFeatureIsBusinessStars(serialID);
 	            double x19 = featureParser.getEnumFeaturebusinessType(serialID);
 	            double x20 = featureParser.getEnumFeatureNoiseLevel(serialID);
 
-	           // double x21 = featureParser.getTextAnalysisScore(serialID);      // fake score of 2, for now
-
-	            // TODO: More features to add here.
 	            Instance inst;
 				inst = new DenseInstance(19);
 	            

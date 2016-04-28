@@ -28,7 +28,7 @@ public class RandomForestClassifierForHygieneRelated {
 		Attribute sentiments_attr = new Attribute("sentiments");
 		Attribute feature_attr = new Attribute("featureTarget", hygenic);
 
-		ArrayList attrList = new ArrayList<Attribute>();
+		ArrayList<Attribute> attrList = new ArrayList<Attribute>();
 
 		attrList.add(sentiments_attr);
 		attrList.add(feature_attr);
@@ -58,8 +58,7 @@ public class RandomForestClassifierForHygieneRelated {
 
 		try {
 			rf.buildClassifier(trainData);
-			int accuracyCounter = 0;
-
+			
 			Evaluation eval = new Evaluation(trainData);
 			Random rand = new Random(1);
 			eval.crossValidateModel(rf,trainData,5, rand);

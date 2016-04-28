@@ -1,4 +1,4 @@
-package parser;/* Authored by Kushagra on 3/28/2016. */
+package parser;
 
 import model.RestaurantToYelpIdData;
 
@@ -13,13 +13,6 @@ import java.util.Map;
 public class RestaurantToYelpIdParser {
 
     private static String filePath = "data/restaurant_ids_to_yelp_ids.csv";
-
-
-    public static void main(String[] args) throws IOException {
-//        System.out.println(getRestaurentIDFromYelpID("atafOjxJyt4ohXWJLt6UaQ"));
-
-        Map<String, String> map = BusinessToYelpIDMapper();
-    }
 
     // returns map for business and Yelp IDs
     public static Map<String, String> BusinessToYelpIDMapper() throws IOException {

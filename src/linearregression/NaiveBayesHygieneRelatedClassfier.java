@@ -29,7 +29,7 @@ public class NaiveBayesHygieneRelatedClassfier {
 		Attribute sentiments_attr = new Attribute("sentiments");
 		Attribute feature_attr = new Attribute("featureTarget", hygenic);
 		
-		ArrayList attrList = new ArrayList<Attribute>();
+		ArrayList<Attribute> attrList = new ArrayList<Attribute>();
 
 		attrList.add(sentiments_attr);
 		attrList.add(feature_attr);
@@ -43,7 +43,7 @@ public class NaiveBayesHygieneRelatedClassfier {
 
 			double Y = featureParser.getTargetVariable(serialID);
 			double x21 = featureParser.getTextAnalysisScore(serialID);
-			double x20 = featureParser.getEnumFeatureNoiseLevel(serialID);
+			
 			Instance inst;
 			inst = new DenseInstance(2);
 			inst.setValue(sentiments_attr, x21);
@@ -60,8 +60,7 @@ public class NaiveBayesHygieneRelatedClassfier {
 
 		try {
 			rf.buildClassifier(trainData);
-			int accuracyCounter = 0;
-
+			
 			Evaluation eval = new Evaluation(trainData);
 			Random rand = new Random(1);
 			eval.crossValidateModel(rf,trainData,5, rand);

@@ -1,6 +1,5 @@
 package corelation;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import model.ViolationEntry;
@@ -8,11 +7,6 @@ import model.ViolationEntry;
 import org.apache.commons.math3.stat.correlation.SpearmansCorrelation;
 
 import feature_parsers.FeatureParser;
-import weka.attributeSelection.CorrelationAttributeEval;
-import weka.core.Attribute;
-import weka.core.DenseInstance;
-import weka.core.Instance;
-import weka.core.Instances;
 
 public class SpearmanCorelation {
 	

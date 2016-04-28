@@ -1,6 +1,5 @@
-package model;/* Authored by Kushagra on 4/10/2016. */
+package model;
 
-import preprocessing.HygieneIdentifier;
 import utils.TextAnalyzer;
 
 import java.util.ArrayList;

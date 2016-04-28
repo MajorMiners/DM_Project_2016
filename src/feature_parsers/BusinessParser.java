@@ -1,4 +1,4 @@
-package feature_parsers;/* Authored by Kushagra on 4/12/2016. */
+package feature_parsers;
 
 import model.BusinessSet;
 import org.json.simple.JSONObject;
@@ -14,14 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BusinessParser {
-
-    public static void main(String[] args) throws IOException, ParseException {
-
-        Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
-
-        Map<String, BusinessSet> businessSetMapper = buildBusinessSetMap(instanceMap);
-        Map<Integer, BusinessSet> businessInstanceMapper = buildBusinessInstanceMap(instanceMap, businessSetMapper);
-    }
 
     protected static Map<Integer, BusinessSet> buildBusinessInstanceMap(Map<Integer, FeatureInstance> instanceMap, Map<String,
             BusinessSet> businessSetMapper) {

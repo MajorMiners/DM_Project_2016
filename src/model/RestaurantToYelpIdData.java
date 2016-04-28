@@ -1,4 +1,4 @@
-package model;/* Authored by Kushagra on 3/28/2016. */
+package model;
 
 public class RestaurantToYelpIdData {
     private String restaurantID;

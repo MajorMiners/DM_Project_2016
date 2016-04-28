@@ -51,7 +51,7 @@ FeatureParser featureParser = new FeatureParser();
 		Attribute sentiments_attr = new Attribute("sentiments");
 		Attribute feature_attr = new Attribute("featureTarget", hygenic);
 		
-		ArrayList attrList = new ArrayList<Attribute>();
+		ArrayList<Attribute> attrList = new ArrayList<Attribute>();
 		//attrList.add(featureAverageLength_attr);
 		//attrList.add(featureAverageRating_attr);
 		//attrList.add(featureAverageReviewCount_attr);
@@ -83,21 +83,12 @@ FeatureParser featureParser = new FeatureParser();
 	
         Set<Integer> trainInstances = featureParser.getInstances();
         int n = (int) (trainInstances.size() * 0.8);
-        System.out.println("N: "+n);
-        
-        /*List<Integer> list = new ArrayList<>(trainInstances);
-        Set<Integer> testInstances = new HashSet(list.subList(n, trainInstances.size()));
-        System.out.println("Test Instances size: "+testInstances.size());
-        trainInstances.removeAll(testInstances);
-        */
-        int counter = 0;
-        double avgTarget = 0;
         
         for (int serialID : trainInstances) {
         	
             // Target Variables Y
             double Y = featureParser.getTargetVariable(serialID);
-            avgTarget+=Y;
+
             // Predictors X -- Review.json
             double x1 = featureParser.getFeatureAverageLength(serialID);
             double x2 = featureParser.getFeatureAverageRating(serialID);
@@ -154,81 +145,17 @@ FeatureParser featureParser = new FeatureParser();
             trainData.add(inst);
         }
 
-        /*ArrayList<Double> testY = new ArrayList<Double>();
-        for (int serialID : testInstances) {
-        	
-            // Target Variables Y
-            double Y = featureParser.getTargetVariable(serialID);
-            testY.add(Y);
-            // Predictors X -- Review.json
-            //double x1 = featureParser.getFeatureAverageLength(serialID);
-            double x2 = featureParser.getFeatureAverageRating(serialID);
-            double x3 = featureParser.getFeatureAverageReviewCount(serialID);
-            double x4 = featureParser.getFeaturePenaltyScore(serialID);
-            double x5 = featureParser.getFeatureReviewResponse(serialID);
-
-            // Predictors X -- Business.json
-            double x6 = featureParser.getFeatureIsAlcoholic(serialID);
-            double x7 = featureParser.getFeatureisWaiterService(serialID);
-            double x8 = featureParser.getFeatureisValetParking(serialID);
-            double x9 = featureParser.getFeatureisRomantic(serialID);
-            double x10 = featureParser.getFeatureisIntimate(serialID);
-            double x11 = featureParser.getFeatureisTouristy(serialID);
-            double x12 = featureParser.getFeatureisHipster(serialID);
-            double x13 = featureParser.getFeatureisUpscale(serialID);
-            double x14 = featureParser.getFeatureisDeliveryAvailable(serialID);
-            double x15 = featureParser.getFeatureisGoodForDessert(serialID);
-            double x16 = featureParser.getFeatureisLatenight(serialID);
-            double x17 = featureParser.getEnumFeaturePriceRange(serialID);
-            double x18 = featureParser.getFeatureIsBusinessStars(serialID);
-            double x19 = featureParser.getEnumFeaturebusinessType(serialID);
-            double x20 = featureParser.getEnumFeatureNoiseLevel(serialID);
-            double x21 = featureParser.getTextAnalysisScore(serialID);      // fake score of 2, for now
-
-            // TODO: More features to add here.
-            Instance inst;
-			inst = new DenseInstance(19);
-            
-            inst.setValue(featureAverageLength_attr, 6);
-            inst.setValue(featureAverageRating_attr, x2);
-            inst.setValue(featureAverageReviewCount_attr, x3);
-            inst.setValue(featurePenaltyScore_attr, x4);
-            inst.setValue(featureReviewResponse_attr, x5);
-            inst.setValue(featureIsAlcoholic_attr, x6);
-            inst.setValue(featureisWaiterService_attr, x7);
-            inst.setValue(featureisValetParking_attr, x8);
-            inst.setValue(featureisRomantic_attr, x9);
-            inst.setValue(featureisIntimate_attr, x10);
-            inst.setValue(featureisTouristy_attr, x11);
-            inst.setValue(featureisHipster_attr, x12);
-            inst.setValue(featureisUpscale_attr, x13);
-            inst.setValue(featureisDeliveryAvailable_attr, x14);
-            inst.setValue(featureisGoodForDessert_attr, x15);
-            inst.setValue(featureisLatenight_attr, x16);
-            inst.setValue(featurePriceRange_attr, x17);
-            inst.setValue(featureNoiseLevel_attr, x20);
-            inst.setValue(sentiments_attr, x21);
-            
-            testData.add(inst);
-        }
-*/
-        
-        
         NaiveBayes rf = new NaiveBayes();
         
         try {
-        	  rf.buildClassifier(trainData);
-			  int accuracyCounter = 0;
+        	rf.buildClassifier(trainData);
 			  
-			  Evaluation eval = new Evaluation(trainData);
-			  Random rand = new Random(1);
-			  eval.crossValidateModel(rf,trainData,5, rand);
-			  System.out.println("Summary: "+eval.toSummaryString()); 
-			} catch (Exception e) {
+			Evaluation eval = new Evaluation(trainData);
+			Random rand = new Random(1);
+			eval.crossValidateModel(rf,trainData,5, rand);
+			System.out.println("Summary: "+eval.toSummaryString()); 
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        
-  
-
      }
 }

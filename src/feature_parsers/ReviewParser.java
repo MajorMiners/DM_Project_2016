@@ -1,4 +1,4 @@
-package feature_parsers;/* Authored by Kushagra on 4/10/2016. */
+package feature_parsers;
 
 import model.Review;
 import model.ReviewSet;
@@ -17,18 +17,6 @@ import java.util.Map;
 
 public class ReviewParser {
 
-
-    /**
-     * Main method for testing purposes, can be removed
-     **/
-    public static void main(String[] args) throws IOException, ParseException {
-
-        Map<Integer, FeatureInstance> instanceMap = FeatureInstance.getMap_Instances();
-
-        Map<Integer, ReviewSet> reviewSetMapper = buildReviewSetMap(instanceMap);
-
-        storetoFILE(reviewSetMapper);
-    }
 
     private static void storetoFILE(Map<Integer, ReviewSet> reviewSetMapper) {
         // TODO: after complete testing for fasterIO

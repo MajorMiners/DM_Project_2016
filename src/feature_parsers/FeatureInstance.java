@@ -1,4 +1,4 @@
-package feature_parsers;/* Authored by Kushagra on 4/10/2016. */
+package feature_parsers;
 
 import model.AllViolationData;
 import parser.AllViolationParser;
@@ -101,13 +101,4 @@ public class FeatureInstance {
         }
     }
 
-    /**
-     * Main method for testing purposes, can be removed
-     **/
-    public static void main(String[] args) throws IOException {
-
-        System.out.println("Start");
-        Map<Integer, FeatureInstance> map = getMap_Instances();
-        System.out.println("Done");
-    }
 }

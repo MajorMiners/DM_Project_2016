@@ -17,15 +17,12 @@ public class WordCoeffMapper {
         ArrayList<Double> coefficients = getCeofficients();
 
         PriorityQueue<WordRank> minheap = new PriorityQueue<>();
-        PriorityQueue<WordRank> maxheap = new PriorityQueue<>(Collections.reverseOrder());
         int wordCount = topKWords.length;
 
 
 
         for (int i=0; i<wordCount; i++) {
             minheap.add(new WordRank(topKWords[i], coefficients.get(i)));
-            maxheap.add(new WordRank(topKWords[i], coefficients.get(i)));
-
         }
 
 //        System.out.println(minheap.poll());

@@ -1,4 +1,4 @@
-package linearregression;/* Authored by Kushagra on 4/11/2016. */
+package linearregression;
 
 import feature_parsers.FeatureParser;
 

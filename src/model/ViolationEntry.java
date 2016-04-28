@@ -1,4 +1,4 @@
-package model;/* Authored by Kushagra on 3/28/2016. */
+package model;
 
 public class ViolationEntry {
     private int minorViolationCount;
@@ -51,7 +51,6 @@ public class ViolationEntry {
         		entry.severeViolationCount );
         penaltyScore = v1Norm + v2Norm + v3Norm;
 
-//        penaltyScore = entry.minorViolationCount + entry.majorViolationCount + entry.severeViolationCount;
         return penaltyScore;
     }
 

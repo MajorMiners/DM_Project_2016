@@ -1,13 +1,9 @@
-package utils;/* Authored by Kushagra on 4/11/2016. */
+package utils;
 
 import java.util.HashSet;
-import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import feature_parsers.CategoryMap;
 
@@ -78,17 +74,12 @@ public class JSONParserUtil {
     public static String parseCuisineType(JSONObject jsonStringObject) {
     	
     	JSONArray categories = (JSONArray) jsonStringObject.get("categories");
-    	//Object obj = jsonStringObject.get("categories");
-    	
-    	
-    	//System.out.println(obj);
     	
 		HashSet<String> catMap = new CategoryMap().getMap();
 		
 		for(Object entry: categories){
 			
 			String str = entry.toString();
-			//System.out.println(str);
 			if(catMap.contains(str)){
 				return str;
 			}

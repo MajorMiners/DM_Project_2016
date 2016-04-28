@@ -1,4 +1,4 @@
-package model;/* Authored by Kushagra on 4/10/2016. */
+package model;
 
 import utils.Date;
 
