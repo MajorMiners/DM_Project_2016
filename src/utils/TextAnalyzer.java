@@ -1,4 +1,4 @@
-package utils;/* Authored by Kushagra on 4/13/2016. */
+package utils;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -8,7 +8,6 @@ import java.util.HashSet;
 import org.tartarus.snowball.ext.englishStemmer;
 
 import model.Review;
-import preprocessing.NLP;
 
 @SuppressWarnings("ConstantConditions")
 public class TextAnalyzer {
@@ -61,10 +60,6 @@ public class TextAnalyzer {
     		score = baseScore;
     	return score;
         
-    }
-
-    private static double scoreHygienceRelatedText(String reviewText) {
-        return NLP.findSentiment(reviewText);
     }
 
     public static String hygieneComment(String reviewText, HashSet<String> dict) {

@@ -1,4 +1,4 @@
-package utils;/* Authored by Kushagra on 4/10/2016. */
+package utils;
 
 public class Date {
 
